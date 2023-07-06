@@ -44,9 +44,9 @@ export default function FoodTypePage() {
   return (
     <Wrapper>
       {foodTypeArray.map((foodType) => (
-        <Restaurant>
+        <Restaurant key={foodType.name}>
           <img
-            alt="pizza"
+            alt={foodType.name}
             width={56}
             height={56}
             src={`${import.meta.env.VITE_STORAGE_ADDRESS}/${foodType.icon}`}
@@ -71,5 +71,6 @@ const Restaurant = styled.button`
   ${flexColumn};
   align-items: center;
   font-weight: bold;
+  row-gap: 8px;
   color: #1d2745;
 `;

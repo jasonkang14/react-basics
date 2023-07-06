@@ -14,7 +14,10 @@ export default function LoginPage() {
         <Header>
           <Title>이메일로 로그인</Title>
           <CloseButton>
-            <img src="/icons/ic-close-btn.svg" />
+            <img
+              alt="close"
+              src={`${import.meta.env.VITE_STORAGE_ADDRESS}/ic-close-btn.svg`}
+            />
           </CloseButton>
         </Header>
         <InputSection>
