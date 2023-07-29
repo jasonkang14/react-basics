@@ -9,6 +9,7 @@ export type ContextType = State & {
   increaseItemCount: (menuId: number) => void;
   decreaseItemCount: (menuId: number) => void;
   resetOrder: () => void;
+  totalPrice: number;
 };
 
 const stub = (): never => {
@@ -18,11 +19,11 @@ const stub = (): never => {
 export const initialContext: ContextType = {
   ...initialState,
 
-  // Media Device Control
   addItemToOrder: stub,
   increaseItemCount: stub,
   decreaseItemCount: stub,
   resetOrder: stub,
+  totalPrice: 0,
 };
 
 const OrderContext = createContext<ContextType>(initialContext);

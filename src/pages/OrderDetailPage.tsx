@@ -1,17 +1,21 @@
 import styled from "@emotion/styled";
+import { newOrderState } from "atoms/order";
 import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  const { newOrder, increaseItemCount, decreaseItemCount, resetOrder } =
-    useOrder();
-
-  const totalPrice = newOrder.reduce((total, item) => {
-    return total + item.count * item.price;
-  }, 0);
+  // const newOrder = useRecoilValue(newOrderState);
+  const {
+    newOrder,
+    increaseItemCount,
+    decreaseItemCount,
+    resetOrder,
+    totalPrice,
+  } = useOrder();
 
   useEffect(() => {
     if (!newOrder.length) {

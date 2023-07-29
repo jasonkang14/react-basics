@@ -1,4 +1,4 @@
-import { ReactElement, useReducer } from "react";
+import { ReactElement, useEffect, useReducer } from "react";
 
 import OrderContext, { initialContext } from "./context";
 import type { ContextType } from "./context";
@@ -12,6 +12,13 @@ const OrderProvider = ({
   children: ReactElement;
 }): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { newOrder } = state;
+  useEffect(() => {
+    const totalPrice = newOrder.reduce((total, item) => {
+      return total + item.count * item.price;
+    }, 0);
+    dispatch({ type: "SET_TOTAL_PRICE", payload: totalPrice });
+  }, [newOrder]);
 
   const resetOrder = () => {
     dispatch({ type: "RESET_ORDER" });

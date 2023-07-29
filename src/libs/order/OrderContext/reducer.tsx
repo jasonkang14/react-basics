@@ -8,7 +8,8 @@ export type Action =
   | { type: "RESET_ORDER" }
   | { type: "ADD_ITEM_TO_ORDER"; payload: INewOrder }
   | { type: "INCREASE_ITEM_COUNT"; payload: number }
-  | { type: "DECREASE_ITEM_COUNT"; payload: number };
+  | { type: "DECREASE_ITEM_COUNT"; payload: number }
+  | { type: "SET_TOTAL_PRICE"; payload: number };
 
 /** Reducer */
 export const reducer = (prevState: State, action: Action): State => {
@@ -52,6 +53,11 @@ export const reducer = (prevState: State, action: Action): State => {
           return;
         }
         draft.newOrder = [...filtered, targetMenu];
+      });
+
+    case "SET_TOTAL_PRICE":
+      return produce(prevState, (draft) => {
+        draft.totalPrice = action.payload;
       });
 
     default:
