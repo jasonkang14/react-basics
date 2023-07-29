@@ -15,16 +15,17 @@ export default function OrderDetailPage() {
     decreaseItemCount,
     resetOrder,
     totalPrice,
+    restaurant,
   } = useOrder();
 
   useEffect(() => {
     if (!newOrder.length) {
-      navigate("/restaurant/1");
+      navigate(`/restaurant/${restaurant.id}`);
     }
   }, [newOrder]);
 
   const handleMoreBtnClick = () => {
-    navigate("/restaurant/1");
+    navigate(`/restaurant/${restaurant.id}`);
   };
 
   const handleConfirmBtnClick = () => {
@@ -34,7 +35,7 @@ export default function OrderDetailPage() {
 
   return (
     <Wrapper>
-      <Title>주문상세</Title>
+      <Title>{restaurant.name}</Title>
       {newOrder.map((menu) => (
         <MenuWrap>
           <img alt={menu.name} src={menu.picture} width={100} height={100} />

@@ -28,3 +28,8 @@ export interface INewOrder {
   price: number;
   picture: string;
 }
+
+export interface IRestaurant {
+  id: number;
+  name: string;
+}

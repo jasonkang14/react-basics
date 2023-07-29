@@ -9,4 +9,5 @@ export type {
   AudioOutputDeviceInfo,
   VideoInputDeviceInfo,
   INewOrder,
+  IRestaurant,
 } from "./types";

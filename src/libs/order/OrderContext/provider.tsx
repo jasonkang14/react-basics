@@ -4,7 +4,7 @@ import OrderContext, { initialContext } from "./context";
 import type { ContextType } from "./context";
 import { reducer } from "./reducer";
 import { initialState } from "./state";
-import { INewOrder } from ".";
+import { INewOrder, IRestaurant } from ".";
 
 const OrderProvider = ({
   children,
@@ -13,10 +13,12 @@ const OrderProvider = ({
 }): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { newOrder } = state;
+
   useEffect(() => {
     const totalPrice = newOrder.reduce((total, item) => {
       return total + item.count * item.price;
     }, 0);
+
     dispatch({ type: "SET_TOTAL_PRICE", payload: totalPrice });
   }, [newOrder]);
 
@@ -37,6 +39,10 @@ const OrderProvider = ({
     dispatch({ type: "DECREASE_ITEM_COUNT", payload: menuId });
   };
 
+  const setRestaurant = (targetRestaurant: IRestaurant) => {
+    dispatch({ type: "SET_RESTAURANT", payload: targetRestaurant });
+  };
+
   const orderContext: ContextType = {
     ...initialContext,
     ...state,
@@ -44,6 +50,7 @@ const OrderProvider = ({
     addItemToOrder,
     increaseItemCount,
     decreaseItemCount,
+    setRestaurant,
   };
 
   return (
