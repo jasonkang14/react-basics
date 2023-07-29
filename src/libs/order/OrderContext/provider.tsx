@@ -1,4 +1,4 @@
-import React, { ReactElement, useReducer } from "react";
+import { ReactElement, useReducer } from "react";
 
 import OrderContext, { initialContext } from "./context";
 import type { ContextType } from "./context";
@@ -12,6 +12,10 @@ const OrderProvider = ({
   children: ReactElement;
 }): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const resetOrder = () => {
+    dispatch({ type: "RESET_ORDER" });
+  };
 
   const addItemToOrder = (newOrder: INewOrder) => {
     dispatch({ type: "ADD_ITEM_TO_ORDER", payload: newOrder });
@@ -29,7 +33,7 @@ const OrderProvider = ({
   const orderContext: ContextType = {
     ...initialContext,
     ...state,
-
+    resetOrder,
     addItemToOrder,
     increaseItemCount,
     decreaseItemCount,

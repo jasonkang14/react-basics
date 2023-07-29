@@ -8,6 +8,7 @@ export type ContextType = State & {
   addItemToOrder: (newOrder: INewOrder) => void;
   increaseItemCount: (menuId: number) => void;
   decreaseItemCount: (menuId: number) => void;
+  resetOrder: () => void;
 };
 
 const stub = (): never => {
@@ -21,6 +22,7 @@ export const initialContext: ContextType = {
   addItemToOrder: stub,
   increaseItemCount: stub,
   decreaseItemCount: stub,
+  resetOrder: stub,
 };
 
 const OrderContext = createContext<ContextType>(initialContext);

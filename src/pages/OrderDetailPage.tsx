@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  const { newOrder, increaseItemCount, decreaseItemCount } = useOrder();
+  const { newOrder, increaseItemCount, decreaseItemCount, resetOrder } =
+    useOrder();
 
   const totalPrice = newOrder.reduce((total, item) => {
     return total + item.count * item.price;
@@ -23,6 +24,7 @@ export default function OrderDetailPage() {
   };
 
   const handleConfirmBtnClick = () => {
+    resetOrder();
     navigate("/");
   };
 
