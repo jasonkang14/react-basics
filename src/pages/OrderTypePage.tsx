@@ -31,6 +31,7 @@ export default function OrderTypePage() {
 
 const Wrapper = styled.main`
   ${flexColumn};
+  margin-top: 64px;
   padding: 24px 16px;
   row-gap: 16px;
 `;

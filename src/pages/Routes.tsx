@@ -9,6 +9,7 @@ import OrderTypePage from "./OrderTypePage";
 import FoodTypePage from "./FoodTypePage";
 import RestaurantListPage from "./RestaurantListPage";
 import RestaurantDetailPage from "./RestaurantDetailPage";
+import OrderDetailPage from "./OrderDetailPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
       <Route path="/food-type" element={<FoodTypePage />} />
       <Route path="/food-type/:id" element={<RestaurantListPage />} />
       <Route path="/restaurant/:id" element={<RestaurantDetailPage />} />
+      <Route path="/order" element={<OrderDetailPage />} />
     </Route>
   )
 );
