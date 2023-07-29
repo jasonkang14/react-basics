@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { flexRow } from "mixins/styles";
-import { OrderCategory } from "mixins/types";
+import { flexRow } from "../mixins/styles";
+import { OrderCategory } from "../mixins/types";
 import { MouseEventHandler } from "react";
 
 interface IOrderType {
@@ -24,7 +24,7 @@ export default function OrderType({
       <img
         width={40}
         height={40}
-        src={`${import.meta.env.VITE_STORAGE_ADDRESS}/${icon}`}
+        src={`https://kr.object.ncloudstorage.com/icons/${icon}`}
       />
       {orderCategory[orderType]}
     </OrderTypeBtn>

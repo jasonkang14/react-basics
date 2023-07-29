@@ -1,16 +1,34 @@
 import styled from "@emotion/styled";
+import { targetRestaurantState } from "atoms/order";
 import useRestaurantList from "hooks/useRestaurantList";
+import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 
 export default function RestaurantListPage() {
   const navigate = useNavigate();
+  const {
+    // setRestaurant,
+    getRestaurantList,
+    restaurantList,
+  } = useOrder();
+  const setRestaurant = useSetRecoilState(targetRestaurantState);
   const { id: foodTypeId } = useParams();
-  const { data: restaurantList } = useRestaurantList(
-    foodTypeId ? parseInt(foodTypeId) : 0
-  );
+  // const { data: restaurantList } = useRestaurantList(
+  //   foodTypeId ? parseInt(foodTypeId) : 0
+  // );
 
-  const handleRestauratClick = (restaurantId: number) => {
+  useEffect(() => {
+    getRestaurantList(foodTypeId ? parseInt(foodTypeId) : 0);
+  }, []);
+
+  const handleRestauratClick = (
+    restaurantId: number,
+    restaurantName: string
+  ) => {
+    setRestaurant({ id: restaurantId, name: restaurantName });
     navigate(`/restaurant/${restaurantId}`, { replace: true });
   };
 
@@ -19,7 +37,7 @@ export default function RestaurantListPage() {
       {restaurantList?.map((restaurant) => (
         <RestaurantListBtn
           key={restaurant.id}
-          onClick={() => handleRestauratClick(restaurant.id)}
+          onClick={() => handleRestauratClick(restaurant.id, restaurant.name)}
         >
           <img alt="food-type" src={restaurant.icon} width={36} height={36} />
           <RestaurantInfo>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import OrderType from "components/OrderType";
-import { flexColumn } from "mixins/styles";
+import OrderType from "../components/OrderType";
+import { flexColumn } from "../mixins/styles";
 import { useNavigate } from "react-router-dom";
 
 export default function OrderTypePage() {
@@ -11,7 +11,6 @@ export default function OrderTypePage() {
   const handlePickupBtnClick = () => {
     navigate("/food-type");
   };
-  console.log("here");
 
   return (
     <Wrapper>
@@ -31,6 +30,7 @@ export default function OrderTypePage() {
 
 const Wrapper = styled.main`
   ${flexColumn};
+  margin-top: 64px;
   padding: 24px 16px;
   row-gap: 16px;
 `;

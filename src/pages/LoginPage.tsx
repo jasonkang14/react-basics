@@ -1,12 +1,24 @@
-import useLogin from "hooks/useLogin";
-import { useState } from "react";
+import useLogin from "../hooks/useLogin";
+import { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate: handleLogin, isError } = useLogin();
+  const { mutate: handleLogin, isError, isSuccess } = useLogin();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+  }, [isSuccess]);
+
+  const changePage = () => {
+    navigate("/");
+  };
 
   return (
     <Wrapper>
@@ -16,7 +28,7 @@ export default function LoginPage() {
           <CloseButton>
             <img
               alt="close"
-              src={`${import.meta.env.VITE_STORAGE_ADDRESS}/ic-close-btn.svg`}
+              src={`https://kr.object.ncloudstorage.com/icons/ic-close-btn.svg`}
             />
           </CloseButton>
         </Header>
@@ -57,6 +69,7 @@ export default function LoginPage() {
       >
         로그인
       </LoginButton>
+      <button onClick={changePage}>테스트</button>
     </Wrapper>
   );
 }

@@ -8,7 +8,7 @@ export default function FoodTypePage() {
   const { data: foodTypeList } = useFoodTypeList();
 
   const handleFoodTypeClick = (foodTypeId: number) => {
-    navigate(`${foodTypeId}`);
+    navigate(`/food-type/${foodTypeId}`);
   };
 
   return (
@@ -31,7 +31,8 @@ export default function FoodTypePage() {
 
 const Wrapper = styled.div`
   ${flexRow};
-  margin-top: 40px;
+  margin-top: 64px;
+  padding-top: 24px;
   gap: 24px;
   justify-content: center;
   align-items: center;

@@ -1,11 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
+// import axiosClient from "../libs/axios";
+import axios from "axios";
 
-import { useMutation } from '@tanstack/react-query';
-import axiosClient from '../libs/axios';
-
-
-interface LoginResponse {
-  token: string;
-}
+// interface LoginResponse {
+//   token: string;
+// }
 
 export interface LoginProps {
   username: string;
@@ -13,21 +12,28 @@ export interface LoginProps {
 }
 
 const postLogin = async ({ username, password }: LoginProps) => {
-  const { data } = await axiosClient.post<LoginResponse>('user/login', {
-    username,
-    password,
-  });
+  const { data } = await axios.post(
+    "https://wanted.byeongjinkang.com/user/login",
+    {
+      username,
+      password,
+    }
+  );
 
   const token = data.token;
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
   return data;
 };
 
 const useLogin = () =>
-  useMutation(['login'], async (loginInfo: LoginProps) => postLogin(loginInfo), {
-    onError() {
-      throw Error('login failed');
-    },
-  });
+  useMutation(
+    ["login"],
+    async (loginInfo: LoginProps) => postLogin(loginInfo),
+    {
+      onError() {
+        throw Error("login failed");
+      },
+    }
+  );
 
 export default useLogin;
