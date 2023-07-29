@@ -1,15 +1,18 @@
 import styled from "@emotion/styled";
 import useRestaurantList from "hooks/useRestaurantList";
 import { flexColumn, flexRow } from "mixins/styles";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function RestaurantListPage() {
+  const navigate = useNavigate();
   const { id: foodTypeId } = useParams();
   const { data: restaurantList } = useRestaurantList(
     foodTypeId ? parseInt(foodTypeId) : 0
   );
 
-  const handleRestauratClick = (restaurantId: number) => {};
+  const handleRestauratClick = (restaurantId: number) => {
+    navigate(`/restaurant/${restaurantId}`, { replace: true });
+  };
 
   return (
     <Wrapper>

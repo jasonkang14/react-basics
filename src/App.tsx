@@ -14,7 +14,7 @@ export default function App() {
       <Global
         styles={css`
           ${normalize}
-          h1, h6, input {
+          h1, h2, h3, h4, h5, h6, input {
             margin: 0;
           }
 
