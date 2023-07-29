@@ -1,56 +1,14 @@
 import styled from "@emotion/styled";
+import useFoodTypeList from "hooks/useFoodTypeList";
 import { flexColumn, flexRow } from "mixins/styles";
 
-const foodTypeArray = [
-  {
-    name: "피자",
-    icon: "ic-pizza.png",
-  },
-  {
-    name: "동남아",
-    icon: "ic-asian.png",
-  },
-  {
-    name: "햄버거",
-    icon: "ic-burger.png",
-  },
-  {
-    name: "디저트",
-    icon: "ic-cake.png",
-  },
-  {
-    name: "치킨",
-    icon: "ic-chicken.png",
-  },
-  {
-    name: "탕,찌개",
-    icon: "ic-hotpot.png",
-  },
-  {
-    name: "고기",
-    icon: "ic-meat.png",
-  },
-  {
-    name: "중식",
-    icon: "ic-noodle.png",
-  },
-  {
-    name: "샐러드",
-    icon: "ic-salad.png",
-  },
-];
-
 export default function FoodTypePage() {
+  const { data: foodTypeList } = useFoodTypeList();
   return (
     <Wrapper>
-      {foodTypeArray.map((foodType) => (
+      {foodTypeList?.map((foodType) => (
         <Restaurant key={foodType.name}>
-          <img
-            alt={foodType.name}
-            width={56}
-            height={56}
-            src={`${import.meta.env.VITE_STORAGE_ADDRESS}/${foodType.icon}`}
-          />
+          <img alt={foodType.name} width={56} height={56} src={foodType.icon} />
           {foodType.name}
         </Restaurant>
       ))}
