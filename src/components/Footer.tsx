@@ -29,12 +29,13 @@ export default function Footer() {
 const StyledFooter = styled.footer`
   ${flexRow};
   justify-content: space-evenly;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 5;
   height: 72px;
   box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
 `;
 
 const FooterItem = styled.button`

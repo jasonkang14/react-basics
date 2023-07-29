@@ -7,6 +7,7 @@ import {
 import LoginPage from "./LoginPage";
 import OrderTypePage from "./OrderTypePage";
 import FoodTypePage from "./FoodTypePage";
+import RestaurantListPage from "./RestaurantListPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<OrderTypePage />} />
       <Route path="/food-type" element={<FoodTypePage />} />
+      <Route path="/food-type/:id" element={<RestaurantListPage />} />
     </Route>
   )
 );

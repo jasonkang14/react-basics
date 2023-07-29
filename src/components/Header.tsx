@@ -19,6 +19,9 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   ${flexRow}
+  position: fixed;
+  width: 100vw;
+  top: 0;
   background-color: #1d2745;
   height: 64px;
   border-bottom-left-radius: 16px;

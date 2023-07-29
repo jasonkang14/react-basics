@@ -1,16 +1,29 @@
 import styled from "@emotion/styled";
 import useFoodTypeList from "hooks/useFoodTypeList";
 import { flexColumn, flexRow } from "mixins/styles";
+import { useNavigate } from "react-router-dom";
 
 export default function FoodTypePage() {
+  const navigate = useNavigate();
   const { data: foodTypeList } = useFoodTypeList();
+
+  const handleFoodTypeClick = (foodTypeId: number) => {
+    navigate(`${foodTypeId}`);
+  };
+
   return (
     <Wrapper>
       {foodTypeList?.map((foodType) => (
-        <Restaurant key={foodType.name}>
-          <img alt={foodType.name} width={56} height={56} src={foodType.icon} />
+        <FoodType key={foodType.id}>
+          <img
+            alt={foodType.name}
+            width={56}
+            height={56}
+            src={foodType.icon}
+            onClick={() => handleFoodTypeClick(foodType.id)}
+          />
           {foodType.name}
-        </Restaurant>
+        </FoodType>
       ))}
     </Wrapper>
   );
@@ -25,7 +38,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Restaurant = styled.button`
+const FoodType = styled.button`
   ${flexColumn};
   align-items: center;
   font-weight: bold;
