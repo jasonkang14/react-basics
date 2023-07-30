@@ -1,7 +1,7 @@
-import { produce } from "immer";
+import { castDraft, produce } from "immer";
 
 import { initialState, type State } from "./state";
-import type { INewOrder, IRestaurant } from "./types";
+import type { INewOrder, IRestaurant, ITargetRestaurant } from "./types";
 
 /** Actions */
 export type Action =
@@ -10,7 +10,8 @@ export type Action =
   | { type: "INCREASE_ITEM_COUNT"; payload: number }
   | { type: "DECREASE_ITEM_COUNT"; payload: number }
   | { type: "SET_TOTAL_PRICE"; payload: number }
-  | { type: "SET_RESTAURANT"; payload: IRestaurant };
+  | { type: "SET_TARGET_RESTAURANT"; payload: ITargetRestaurant }
+  | { type: "SET_RESTAURANT_LIST"; payload: IRestaurant[] };
 
 /** Reducer */
 export const reducer = (prevState: State, action: Action): State => {
@@ -31,11 +32,6 @@ export const reducer = (prevState: State, action: Action): State => {
 
         if (!targetMenu) return;
         targetMenu.count += 1;
-        const filtered = prevState.newOrder.filter(
-          (order) => order.id !== action.payload
-        );
-
-        draft.newOrder = [...filtered, targetMenu];
       });
 
     case "DECREASE_ITEM_COUNT":
@@ -46,14 +42,6 @@ export const reducer = (prevState: State, action: Action): State => {
 
         if (!targetMenu) return;
         targetMenu.count -= 1;
-        const filtered = draft.newOrder.filter(
-          (order) => order.id !== action.payload
-        );
-        if (targetMenu.count === 0) {
-          draft.newOrder = filtered;
-          return;
-        }
-        draft.newOrder = [...filtered, targetMenu];
       });
 
     case "SET_TOTAL_PRICE":
@@ -61,9 +49,14 @@ export const reducer = (prevState: State, action: Action): State => {
         draft.totalPrice = action.payload;
       });
 
-    case "SET_RESTAURANT":
+    case "SET_TARGET_RESTAURANT":
       return produce(prevState, (draft) => {
         draft.restaurant = action.payload;
+      });
+
+    case "SET_RESTAURANT_LIST":
+      return produce(prevState, (draft) => {
+        draft.restaurantList = action.payload;
       });
 
     default:

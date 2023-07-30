@@ -19,6 +19,8 @@ const useRestaurantDetail = (restaurantId: number) => {
       return data;
     },
     {
+      cacheTime: 0,
+      staleTime: 0,
       enabled: restaurantId > 0,
     }
   );

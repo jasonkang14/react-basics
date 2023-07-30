@@ -29,7 +29,15 @@ export interface INewOrder {
   picture: string;
 }
 
+export interface ITargetRestaurant {
+  id: number;
+  name: string;
+}
+
 export interface IRestaurant {
   id: number;
   name: string;
+  ratings: number;
+  minPrice: number;
+  icon: string;
 }

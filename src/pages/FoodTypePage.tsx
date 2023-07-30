@@ -8,7 +8,7 @@ export default function FoodTypePage() {
   const { data: foodTypeList } = useFoodTypeList();
 
   const handleFoodTypeClick = (foodTypeId: number) => {
-    navigate(`${foodTypeId}`);
+    navigate(`/food-type/${foodTypeId}`);
   };
 
   return (

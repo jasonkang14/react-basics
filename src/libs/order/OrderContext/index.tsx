@@ -10,4 +10,5 @@ export type {
   VideoInputDeviceInfo,
   INewOrder,
   IRestaurant,
+  ITargetRestaurant,
 } from "./types";

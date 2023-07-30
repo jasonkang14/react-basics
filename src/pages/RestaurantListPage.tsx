@@ -2,15 +2,20 @@ import styled from "@emotion/styled";
 import useRestaurantList from "hooks/useRestaurantList";
 import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function RestaurantListPage() {
   const navigate = useNavigate();
-  const { setRestaurant } = useOrder();
+  const { setRestaurant, getRestaurantList, restaurantList } = useOrder();
   const { id: foodTypeId } = useParams();
-  const { data: restaurantList } = useRestaurantList(
-    foodTypeId ? parseInt(foodTypeId) : 0
-  );
+  // const { data: restaurantList } = useRestaurantList(
+  //   foodTypeId ? parseInt(foodTypeId) : 0
+  // );
+
+  useEffect(() => {
+    getRestaurantList(foodTypeId ? parseInt(foodTypeId) : 0);
+  }, []);
 
   const handleRestauratClick = (
     restaurantId: number,

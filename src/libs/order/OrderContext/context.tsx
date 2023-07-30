@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 import { State, initialState } from "./state";
-import { INewOrder, IRestaurant } from ".";
+import { INewOrder, IRestaurant, ITargetRestaurant } from ".";
 
 /** Context */
 export type ContextType = State & {
@@ -9,9 +9,11 @@ export type ContextType = State & {
   increaseItemCount: (menuId: number) => void;
   decreaseItemCount: (menuId: number) => void;
   resetOrder: () => void;
-  setRestaurant: (targetRestaurant: IRestaurant) => void;
+  setRestaurant: (targetRestaurant: ITargetRestaurant) => void;
+  getRestaurantList: (foodTypeId: number) => void;
   totalPrice: number;
-  restaurant: IRestaurant;
+  restaurant: ITargetRestaurant;
+  restaurantList: IRestaurant[];
 };
 
 const stub = (): never => {
@@ -26,12 +28,14 @@ export const initialContext: ContextType = {
   decreaseItemCount: stub,
   resetOrder: stub,
   setRestaurant: stub,
+  getRestaurantList: stub,
 
   totalPrice: 0,
   restaurant: {
     id: 0,
     name: "",
   },
+  restaurantList: [],
 };
 
 const OrderContext = createContext<ContextType>(initialContext);

@@ -1,13 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosClient from "libs/axios";
-
-interface IRestaurant {
-  id: number;
-  name: string;
-  ratings: number;
-  minPrice: number;
-  icon: string;
-}
+import { IRestaurant } from "libs/order";
 
 const useRestaurantList = (foodTypeId: number) => {
   return useQuery(
@@ -18,9 +11,7 @@ const useRestaurantList = (foodTypeId: number) => {
       );
       return data;
     },
-    {
-      enabled: foodTypeId > 0,
-    }
+    {}
   );
 };
 

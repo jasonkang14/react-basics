@@ -11,7 +11,6 @@ export default function OrderTypePage() {
   const handlePickupBtnClick = () => {
     navigate("/food-type");
   };
-  console.log("here");
 
   return (
     <Wrapper>
