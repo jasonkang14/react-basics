@@ -9,26 +9,24 @@ import { useRecoilState } from "recoil";
 
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
-  // const [order, addItemToOrder] = useRecoilState(newOrderState);
-  const { addItemToOrder } = useOrder();
+  const [order, addItemToOrder] = useRecoilState(newOrderState);
+  // const { addItemToOrder } = useOrder();
   const { id: restaurantId } = useParams();
   const { data: restaurant } = useRestaurantDetail(
     restaurantId ? parseInt(restaurantId) : 0
   );
 
   const handleMenuClick = (menu: IMenu) => {
-    addItemToOrder(
-      // [
-      // ...order,
+    addItemToOrder([
+      ...order,
       {
         name: menu.name,
         id: menu.id,
         price: menu.price,
         count: 1,
         picture: menu.picture,
-      }
-      // ]
-    );
+      },
+    ]);
     navigate("/order");
   };
 

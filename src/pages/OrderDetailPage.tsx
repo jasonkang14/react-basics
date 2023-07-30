@@ -1,21 +1,27 @@
 import styled from "@emotion/styled";
-import { newOrderState } from "atoms/order";
+import {
+  newOrderState,
+  targetRestaurantState,
+  totalPriceState,
+} from "atoms/order";
 import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
 import { Profiler, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  // const newOrder = useRecoilValue(newOrderState);
+  const totalPrice = useRecoilValue(totalPriceState);
+  const restaurant = useRecoilValue(targetRestaurantState);
+  const [newOrder, changeCount] = useRecoilState(newOrderState);
   const {
-    newOrder,
+    // newOrder,
     increaseItemCount,
     decreaseItemCount,
     resetOrder,
-    totalPrice,
-    restaurant,
+    // totalPrice,
+    // restaurant,
   } = useOrder();
 
   useEffect(() => {
@@ -44,6 +50,24 @@ export default function OrderDetailPage() {
     // Aggregate or log render timings...
   }
 
+  const handleIncrementBtnClick = (menuId: number) => {
+    // increaseItemCount(menuId);
+    changeCount((oldArray) =>
+      oldArray.map((item) =>
+        item.id === menuId ? { ...item, count: item.count + 1 } : item
+      )
+    );
+  };
+
+  const handleDecrementBtnClick = (menuId: number) => {
+    // decreaseItemCount(menuId);
+    changeCount((oldArray) =>
+      oldArray.map((item) =>
+        item.id === menuId ? { ...item, count: item.count - 1 } : item
+      )
+    );
+  };
+
   return (
     <Profiler id="orderDetail" onRender={onRender}>
       <Wrapper>
@@ -53,25 +77,21 @@ export default function OrderDetailPage() {
             <img alt={menu.name} src={menu.picture} width={100} height={100} />
             <MenuInfo>
               <MenuName>{menu.name}</MenuName>
-              <MenuPrice>{`${menu.price.toString().slice(0, 2)},${menu.price
-                .toString()
-                .slice(2)}원`}</MenuPrice>
+              <MenuPrice>{`${menu.price.toLocaleString()}원`}</MenuPrice>
 
               <Counter>
-                <DecrementBtn onClick={() => decreaseItemCount(menu.id)}>
+                <DecrementBtn onClick={() => handleDecrementBtnClick(menu.id)}>
                   -
                 </DecrementBtn>
                 {menu.count}
-                <IncrementBtn onClick={() => increaseItemCount(menu.id)}>
+                <IncrementBtn onClick={() => handleIncrementBtnClick(menu.id)}>
                   +
                 </IncrementBtn>
               </Counter>
             </MenuInfo>
           </MenuWrap>
         ))}
-        <TotalPrice>{`주문금액: ${totalPrice
-          .toString()
-          .slice(0, 2)},${totalPrice.toString().slice(2)}원`}</TotalPrice>
+        <TotalPrice>{`주문금액: ${totalPrice.toLocaleString()}원`}</TotalPrice>
         <ButtonWrap>
           <MoreBtn onClick={handleMoreBtnClick}>더담기</MoreBtn>
           <ConfirmBtn onClick={handleConfirmBtnClick}>주문완료</ConfirmBtn>
