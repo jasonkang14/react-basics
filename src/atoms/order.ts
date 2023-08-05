@@ -1,5 +1,10 @@
-import { INewOrder, ITargetRestaurant } from "libs/order";
+import { INewOrder, ITargetRestaurant, OrderCategory } from "mixins/types";
 import { atom, selector } from "recoil";
+
+export const orderTypeState = atom<OrderCategory>({
+  key: "orderTypeState",
+  default: "delivery",
+});
 
 export const newOrderState = atom<INewOrder[]>({
   key: "newOrderState",

@@ -5,7 +5,7 @@ import { router } from "pages/Routes";
 import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
-import { OrderProvider } from "libs/order";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -29,10 +29,9 @@ export default function App() {
       />
       <PageLayout>
         <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
           <RecoilRoot>
-            <OrderProvider>
-              <RouterProvider router={router} />
-            </OrderProvider>
+            <RouterProvider router={router} />
           </RecoilRoot>
         </QueryClientProvider>
       </PageLayout>

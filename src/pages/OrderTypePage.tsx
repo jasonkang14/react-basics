@@ -2,14 +2,21 @@ import styled from "@emotion/styled";
 import OrderType from "../components/OrderType";
 import { flexColumn } from "../mixins/styles";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { orderTypeState } from "atoms/order";
 
 export default function OrderTypePage() {
   const navigate = useNavigate();
+  const setOrderType = useSetRecoilState(orderTypeState);
+
   const handleDeliveryBtnClick = () => {
     navigate("/food-type");
+    setOrderType("delivery");
   };
+
   const handlePickupBtnClick = () => {
     navigate("/food-type");
+    setOrderType("pickup");
   };
 
   return (

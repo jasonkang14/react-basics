@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://wanted.byeongjinkang.com",
+  baseURL: import.meta.env.VITE_API_ADDRESS,
   timeout: 8000,
 });
 

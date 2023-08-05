@@ -22,6 +22,7 @@ export default function OrderType({
   return (
     <OrderTypeBtn onClick={handleOrderTypeClick}>
       <img
+        alt={orderType}
         width={40}
         height={40}
         src={`https://kr.object.ncloudstorage.com/icons/${icon}`}

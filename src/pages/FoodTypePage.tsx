@@ -19,7 +19,8 @@ export default function FoodTypePage() {
             alt={foodType.name}
             width={56}
             height={56}
-            src={foodType.icon}
+            src="/icons/food-type.png"
+            // src={foodType.icon}
             onClick={() => handleFoodTypeClick(foodType.id)}
           />
           {foodType.name}
