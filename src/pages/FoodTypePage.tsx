@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 import useFoodTypeList from "hooks/useFoodTypeList";
 import { flexColumn, flexRow } from "mixins/styles";
 import { useNavigate } from "react-router-dom";
+import { useGetFoodTypeListQuery } from "store/queries/foodTypeList";
 
 export default function FoodTypePage() {
   const navigate = useNavigate();
-  const { data: foodTypeList } = useFoodTypeList();
+
+  const { data: foodTypeList } = useGetFoodTypeListQuery();
 
   const handleFoodTypeClick = (foodTypeId: number) => {
     navigate(`/food-type/${foodTypeId}`);

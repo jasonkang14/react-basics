@@ -12,12 +12,14 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.19",
     "axios": "^1.4.0",
     "emotion-normalize": "^11.0.1",
     "immer": "^10.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.1",
     "recoil": "^0.7.7",
     "vite-tsconfig-paths": "^4.2.0"
