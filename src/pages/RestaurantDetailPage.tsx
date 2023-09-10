@@ -6,19 +6,20 @@ import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import useNewOrderStore from "stores/useNewOrderStore";
 
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
-  const [order, addItemToOrder] = useRecoilState(newOrderState);
+
   // const { addItemToOrder } = useOrder();
   const { id: restaurantId } = useParams();
   const { data: restaurant } = useRestaurantDetail(
     restaurantId ? parseInt(restaurantId) : 0
   );
+  const { addItemToOrder } = useNewOrderStore((state) => state);
 
   const handleMenuClick = (menu: IMenu) => {
-    addItemToOrder([
-      ...order,
+    addItemToOrder(
       {
         name: menu.name,
         id: menu.id,
@@ -26,7 +27,7 @@ export default function RestaurantDetailPage() {
         count: 1,
         picture: menu.picture,
       },
-    ]);
+    );
     navigate("/order");
   };
 

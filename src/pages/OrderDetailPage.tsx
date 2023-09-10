@@ -9,16 +9,26 @@ import { flexColumn, flexRow } from "mixins/styles";
 import { Profiler, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
+import useNewOrderStore from "stores/useNewOrderStore";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  const totalPrice = useRecoilValue(totalPriceState);
+  // const totalPrice = useRecoilValue(totalPriceState);
   const restaurant = useRecoilValue(targetRestaurantState);
-  const [newOrder, changeCount] = useRecoilState(newOrderState);
+
   const {
-    // newOrder,
+    orders: newOrder,
     increaseItemCount,
     decreaseItemCount,
+  } = useNewOrderStore((state) => state);
+  const totalPrice = newOrder.reduce(
+    (total, item) => total + item.price * item.count,
+    0
+  );
+  const {
+    // newOrder,
+    // increaseItemCount,
+    // decreaseItemCount,
     resetOrder,
     // totalPrice,
     // restaurant,
@@ -51,21 +61,22 @@ export default function OrderDetailPage() {
   }
 
   const handleIncrementBtnClick = (menuId: number) => {
-    // increaseItemCount(menuId);
-    changeCount((oldArray) =>
-      oldArray.map((item) =>
-        item.id === menuId ? { ...item, count: item.count + 1 } : item
-      )
-    );
+    console.log("menuId: ", menuId);
+    increaseItemCount(menuId);
+    // changeCount((oldArray) =>
+    //   oldArray.map((item) =>
+    //     item.id === menuId ? { ...item, count: item.count + 1 } : item
+    //   )
+    // );
   };
 
   const handleDecrementBtnClick = (menuId: number) => {
-    // decreaseItemCount(menuId);
-    changeCount((oldArray) =>
-      oldArray.map((item) =>
-        item.id === menuId ? { ...item, count: item.count - 1 } : item
-      )
-    );
+    decreaseItemCount(menuId);
+    // changeCount((oldArray) =>
+    //   oldArray.map((item) =>
+    //     item.id === menuId ? { ...item, count: item.count - 1 } : item
+    //   )
+    // );
   };
 
   return (
