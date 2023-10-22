@@ -37,6 +37,7 @@ export default function LoginPage() {
             <Label htmlFor="emailInput">이메일</Label>
             <Input
               id="emailInput"
+              data-cy="emailInput"
               type="text"
               placeholder="이메일을 입력해주세요"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -49,6 +50,7 @@ export default function LoginPage() {
             <Label htmlFor="passwordInput">비밀번호</Label>
             <Input
               id="passwordInput"
+              data-cy="passwordInput"
               type="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -64,6 +66,7 @@ export default function LoginPage() {
         </InputSection>
       </div>
       <LoginButton
+        data-cy="loginButton"
         disabled={!email || !password}
         onClick={() => handleLogin({ username: email, password })}
       >

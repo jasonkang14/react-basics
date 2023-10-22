@@ -12,10 +12,11 @@ export interface LoginProps {
 }
 
 const postLogin = async ({ username, password }: LoginProps) => {
+  console.log("post login");
   const { data } = await axios.post(
-    "https://wanted.byeongjinkang.com/user/login",
+    "https://wanted.byeongjinkang.com/user/login/",
     {
-      username,
+      email: username,
       password,
     }
   );
