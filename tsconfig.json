@@ -6,6 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
 
     /* Bundler mode */
     "moduleResolution": "node",
