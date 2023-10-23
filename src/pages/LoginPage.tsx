@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { Button } from "stories/Button";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -65,13 +66,18 @@ export default function LoginPage() {
           </InputWrapper>
         </InputSection>
       </div>
-      <LoginButton
+      <Button
+        size="small"
+        onClick={() => handleLogin({ username: email, password })}
+        label="Log out"
+      />
+      {/* <LoginButton
         data-cy="loginButton"
         disabled={!email || !password}
         onClick={() => handleLogin({ username: email, password })}
       >
         로그인
-      </LoginButton>
+      </LoginButton> */}
       <button onClick={changePage}>테스트</button>
     </Wrapper>
   );

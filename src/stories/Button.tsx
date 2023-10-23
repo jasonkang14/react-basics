@@ -1,6 +1,7 @@
 import React from "react";
 import "./button.css";
 
+import styled from "@emotion/styled";
 interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
@@ -41,16 +42,26 @@ export const Button = ({
     ? "storybook-button--primary"
     : "storybook-button--secondary";
   return (
-    <button
+    <Test
       type="button"
       disabled={disabled}
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
-      )}
+      // className={["storybook-button", `storybook-button--${size}`, mode].join(
+      //   " "
+      // )}
       style={{ backgroundColor }}
       {...props}
     >
       {label}
-    </button>
+    </Test>
   );
 };
+
+const Test = styled.button`
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 230px;
+  &:hover {
+    background-color: red;
+  }
+`;
