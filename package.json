@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@storybook/addon-designs": "^7.0.5",
     "@storybook/addon-essentials": "^7.5.1",
     "@storybook/addon-interactions": "^7.5.1",
     "@storybook/addon-links": "^7.5.1",
@@ -61,7 +62,9 @@
     "jest-environment-jsdom": "^29.6.2",
     "nock": "^13.3.2",
     "storybook": "^7.5.1",
+    "storybook-addon-figma": "^0.1.0",
     "storybook-addon-pseudo-states": "^2.1.2",
+    "storybook-figma": "^0.1.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
@@ -72,5 +75,6 @@
     "testEnvironmentOptions": {
       "url": "https://wanted.byeongjinkang.com"
     }
-  }
+  },
+  "packageManager": "yarn@4.0.0"
 }
