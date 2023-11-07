@@ -1,27 +1,35 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
+
+import { expect } from "@jest/globals";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { Route, Routes, Router } from "react-router-dom";
 
-// import { ThemeProvider } from "@emotion/react";
+import SignupPage from "../pages/SignupPage";
+import { createMemoryHistory } from "history";
 
-// import { theme } from "../theme";
-// import { Route, Routes } from "react-router-dom";
-
-import SignupPage from "pages/SignupPage";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 describe("회원가입 페이지", () => {
-  beforeAll(() => {
-    jest.spyOn(console, "error").mockImplementation(() => {});
-  });
-
-  afterAll(() => {
-    jest.restoreAllMocks();
-  });
-
   test("비밀번호가 일치하지 않으면 에러메시지가 나타난다", async () => {
-    // const history = createMemoryHistory({ initialEntries: ["/signup"] });
+    const history = createMemoryHistory({ initialEntries: ["/signup"] });
 
-    render(<SignupPage />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router location={history.location} navigator={history}>
+          <Routes>
+            <Route path="/signup" element={<SignupPage />} />
+          </Routes>
+        </Router>
+      </QueryClientProvider>
+    );
 
     const passwordInput = screen.getByLabelText("비밀번호");
     const confirmPasswordInput = screen.getByLabelText("비밀번호 확인");

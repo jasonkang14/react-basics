@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import useSignup from "hooks/useSignup";
+import useSignup from "../hooks/useSignup";
 
 export default function SignupPage() {
   const navigate = useNavigate();
