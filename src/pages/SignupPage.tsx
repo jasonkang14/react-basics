@@ -13,6 +13,7 @@ export default function SignupPage() {
 
   useEffect(() => {
     if (isSuccess) {
+      alert("회원가입 성공");
       navigate("/");
     }
   }, [isSuccess]);

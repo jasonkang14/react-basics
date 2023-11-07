@@ -7,7 +7,7 @@ export interface SignupProps {
 }
 
 const postSignup = async ({ username, password }: SignupProps) => {
-  const { data } = await axiosClient.post("/user/Signup/", {
+  const { data } = await axiosClient.post("/user/signup/", {
     email: username,
     password,
   });
