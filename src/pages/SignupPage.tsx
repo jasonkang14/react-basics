@@ -1,14 +1,15 @@
-import useLogin from "../hooks/useLogin";
 import { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import useSignup from "hooks/useSignup";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate: handleLogin, isError, isSuccess } = useLogin();
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { mutate: handleSignup, isSuccess } = useSignup();
 
   useEffect(() => {
     if (isSuccess) {
@@ -20,7 +21,7 @@ export default function LoginPage() {
     <Wrapper>
       <div>
         <Header>
-          <Title>이메일로 로그인</Title>
+          <Title>이메일로 회원가입</Title>
           <CloseButton>
             <img
               alt="close"
@@ -40,7 +41,6 @@ export default function LoginPage() {
                 setEmail(e.target.value)
               }
             />
-            {isError && <ErrorMessage>로그인 정보를 확인해주세요</ErrorMessage>}
           </InputWrapper>
           <InputWrapper>
             <Label htmlFor="passwordInput">비밀번호</Label>
@@ -53,21 +53,34 @@ export default function LoginPage() {
                 setPassword(e.target.value)
               }
             />
-            {isError && (
-              <ErrorMessage data-testid="error-message">
-                로그인 정보를 확인해주세요
-              </ErrorMessage>
-            )}
           </InputWrapper>
+          <InputWrapper>
+            <Label htmlFor="passwordInput">비밀번호 확인</Label>
+            <Input
+              id="passwordInput"
+              data-cy="passwordInput"
+              type="password"
+              placeholder="비밀번호를 한 번 더 입력해주세요"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setConfirmPassword(e.target.value)
+              }
+            />
+          </InputWrapper>
+          {password != confirmPassword && (
+            <ErrorMessage data-testid="error-message">
+              비밀번호가 일치하지 않습니다
+            </ErrorMessage>
+          )}
         </InputSection>
       </div>
-      <LoginButton
-        data-cy="loginButton"
-        disabled={!email || !password}
-        onClick={() => handleLogin({ username: email, password })}
+
+      <SignupButton
+        data-cy="signupButton"
+        disabled={!email || !password || password != confirmPassword}
+        onClick={() => handleSignup({ username: email, password })}
       >
-        로그인
-      </LoginButton>
+        회원가입
+      </SignupButton>
     </Wrapper>
   );
 }
@@ -99,19 +112,15 @@ const Title = styled.h1`
 `;
 
 const InputSection = styled.section`
+  position: relative;
   margin-top: 40px;
-  div {
-    &:last-child {
-      margin-top: 24px;
-    }
-  }
 `;
 
 const Label = styled.label`
   margin-bottom: 16px;
   font-size: 14px;
   line-height: 21px;
-  color: #ffffff;
+  color: #1d2745;
 `;
 
 const Input = styled.input`
@@ -127,7 +136,7 @@ const Input = styled.input`
   }
 `;
 
-const LoginButton = styled.button`
+const SignupButton = styled.button`
   width: 100%;
   padding: 16px;
   border-radius: 4px;
