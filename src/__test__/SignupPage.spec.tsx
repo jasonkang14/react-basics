@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
 
 import { expect } from "@jest/globals";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
