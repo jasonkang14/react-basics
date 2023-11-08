@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+
 import { fireEvent, render, screen } from "@testing-library/react";
 import SignupPage from "../pages/SignupPage";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
@@ -49,6 +50,7 @@ describe("회원가입 테스트", () => {
 
   test("이메일을 입력하고, 비밀번호와 비밀번호 확인값이 일치하면 회원가입 버튼이 활성화된다", async () => {
     // given - 회원가입 페이지가 그려짐
+
     const signupButton = screen.getByRole("button", { name: "회원가입" });
     expect(signupButton).toBeDisabled();
 
