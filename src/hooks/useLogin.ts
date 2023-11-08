@@ -17,13 +17,6 @@ const postLogin = async ({ username, password }: LoginProps) => {
     password,
   });
 
-  // const { data } = await axios.post(
-  //   "https://wanted.byeongjinkang.com/user/login/",
-  //   {
-  //     email: username,
-  //     password,
-  //   }
-  // );
   const token = data.token;
   localStorage.setItem("token", token);
   return data;
