@@ -53,12 +53,12 @@ export default function LoginPage() {
                 setPassword(e.target.value)
               }
             />
-            {isError && (
-              <ErrorMessage data-testid="error-message">
-                로그인 정보를 확인해주세요
-              </ErrorMessage>
-            )}
           </InputWrapper>
+          {isError && (
+            <ErrorMessage data-testid="error-message">
+              로그인 정보를 확인해주세요
+            </ErrorMessage>
+          )}
         </InputSection>
       </div>
       <LoginButton
@@ -100,6 +100,7 @@ const Title = styled.h1`
 
 const InputSection = styled.section`
   margin-top: 40px;
+  position: relative;
   div {
     &:last-child {
       margin-top: 24px;

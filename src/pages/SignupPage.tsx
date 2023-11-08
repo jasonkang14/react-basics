@@ -14,7 +14,7 @@ export default function SignupPage() {
   useEffect(() => {
     if (isSuccess) {
       alert("회원가입 성공");
-      navigate("/");
+      navigate("/login");
     }
   }, [isSuccess]);
 
@@ -60,7 +60,7 @@ export default function SignupPage() {
             <Input
               id="confirmPasswordInput"
               data-cy="confirmPasswordInput"
-              type="confirmPasswordInput"
+              type="password"
               placeholder="비밀번호를 한 번 더 입력해주세요"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setConfirmPassword(e.target.value)
