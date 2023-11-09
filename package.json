@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "cypress": "npx cypress open",
     "preview": "vite preview",
     "unit-test": "jest --watchAll"
   },
