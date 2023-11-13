@@ -34,7 +34,7 @@ export default function RestaurantDetailPage() {
     <Wrapper>
       <RestaurantName>{restaurant?.name}</RestaurantName>
       {restaurant?.menu_set.map((menu) => (
-        <MenuWrap onClick={() => handleMenuClick(menu)}>
+        <MenuWrap data-cy={menu.id} onClick={() => handleMenuClick(menu)}>
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
             <MenuDescription>{menu.description}</MenuDescription>

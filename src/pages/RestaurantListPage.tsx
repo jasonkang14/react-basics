@@ -1,28 +1,18 @@
 import styled from "@emotion/styled";
 import { targetRestaurantState } from "atoms/order";
 import useRestaurantList from "hooks/useRestaurantList";
-import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
-import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 
 export default function RestaurantListPage() {
   const navigate = useNavigate();
-  const {
-    // setRestaurant,
-    getRestaurantList,
-    restaurantList,
-  } = useOrder();
+
   const setRestaurant = useSetRecoilState(targetRestaurantState);
   const { id: foodTypeId } = useParams();
-  // const { data: restaurantList } = useRestaurantList(
-  //   foodTypeId ? parseInt(foodTypeId) : 0
-  // );
-
-  useEffect(() => {
-    getRestaurantList(foodTypeId ? parseInt(foodTypeId) : 0);
-  }, []);
+  const { data: restaurantList } = useRestaurantList(
+    foodTypeId ? parseInt(foodTypeId) : 0
+  );
 
   const handleRestauratClick = (
     restaurantId: number,
@@ -33,9 +23,10 @@ export default function RestaurantListPage() {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-cy="restaurantWrapper">
       {restaurantList?.map((restaurant) => (
-        <RestaurantListBtn
+        <RestaurantBtn
+          data-cy={restaurant.id}
           key={restaurant.id}
           onClick={() => handleRestauratClick(restaurant.id, restaurant.name)}
         >
@@ -53,7 +44,7 @@ export default function RestaurantListPage() {
             </RatingsWrap>
             <MinPrice>최소주문: {restaurant.minPrice}</MinPrice>
           </RestaurantInfo>
-        </RestaurantListBtn>
+        </RestaurantBtn>
       ))}
     </Wrapper>
   );
@@ -83,7 +74,7 @@ const RestaurantInfo = styled.div`
   row-gap: 8px;
 `;
 
-const RestaurantListBtn = styled.button`
+const RestaurantBtn = styled.button`
   ${flexRow}
   column-gap: 16px;
   width: 100%;
