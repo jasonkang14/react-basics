@@ -14,7 +14,7 @@ export default function FoodTypePage() {
   return (
     <Wrapper>
       {foodTypeList?.map((foodType) => (
-        <FoodType key={foodType.id} data-cy={foodType.name}>
+        <FoodType key={foodType.id} data-cy={foodType.id}>
           <img
             alt={foodType.name}
             width={56}

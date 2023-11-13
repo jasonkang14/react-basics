@@ -4,7 +4,6 @@ import {
   targetRestaurantState,
   totalPriceState,
 } from "atoms/order";
-import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,6 @@ export default function OrderDetailPage() {
   const totalPrice = useRecoilValue(totalPriceState);
   const restaurant = useRecoilValue(targetRestaurantState);
   const [newOrder, changeCount] = useRecoilState(newOrderState);
-  const { resetOrder } = useOrder();
 
   useEffect(() => {
     if (!newOrder.length) {
@@ -29,7 +27,6 @@ export default function OrderDetailPage() {
 
   const handleConfirmBtnClick = () => {
     alert("주문이 완료되었습니다");
-    resetOrder();
     navigate("/");
   };
 

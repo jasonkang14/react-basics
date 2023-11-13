@@ -1,0 +1,59 @@
+{
+    "id": 1,
+    "menu_set": [
+        {
+            "id": 1,
+            "name": "페퍼로니피자",
+            "description": "올타임 베스트 근본피자",
+            "price": 18000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/pepperoni-pizza.jpeg",
+            "restaurant": 1
+        },
+        {
+            "id": 2,
+            "name": "프로슈토 피자",
+            "description": "살짝 있어보이는 느낌",
+            "price": 21000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/prosciutto-pizza.jpeg",
+            "restaurant": 1
+        },
+        {
+            "id": 3,
+            "name": "트러플 머시룸 피자",
+            "description": "고급진 트러플향이 뿜뿜",
+            "price": 17000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/mushroom-pizza.jpeg",
+            "restaurant": 1
+        },
+        {
+            "id": 4,
+            "name": "마르게리따 피자",
+            "description": "이탈리안 클래식",
+            "price": 17000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/margherita-pizza.jpeg",
+            "restaurant": 1
+        },
+        {
+            "id": 5,
+            "name": "치즈피자",
+            "description": "와인안주로 기가막힘",
+            "price": 19000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/cheese-pizza.jpeg",
+            "restaurant": 1
+        },
+        {
+            "id": 6,
+            "name": "치즈오븐스파게티",
+            "description": "어릴때 많이먹던 바로그맛",
+            "price": 14000,
+            "picture": "https://kr.object.ncloudstorage.com/icons/cheese-oven-spaghetti.jpeg",
+            "restaurant": 1
+        }
+    ],
+    "name": "Quae.피자",
+    "phone": "02-1993-4995",
+    "address": "서울시 Eos.구 Et.동 14",
+    "minPrice": 21000,
+    "ratings": 4.75,
+    "foodType": 1
+}
