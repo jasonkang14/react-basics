@@ -115,7 +115,7 @@ describe("주문유형 선택", () => {
         .should("be.visible")
         .as("incrementBtn");
       cy.get("@incrementBtn").click();
-
+      cy.get("@counter").should("contain", 2);
       cy.get('[data-cy="completeBtn"]').should("exist").click();
       cy.url().should("include", "/");
     });
