@@ -1,4 +1,5 @@
 import normalize from "emotion-normalize";
+import "./App.css";
 import { css, Global } from "@emotion/react";
 import { PageLayout } from "pages/PageLayout";
 import { router } from "pages/Routes";

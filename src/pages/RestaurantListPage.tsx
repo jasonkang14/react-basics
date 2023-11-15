@@ -79,14 +79,14 @@ const RestaurantBtn = styled.button`
   column-gap: 16px;
   width: 100%;
   border-bottom: 1px solid grey;
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: 24px;
   z-index: 1;
   border-radius: 0;
 `;
 
 const RestaurantName = styled.h5`
-  color: #1d2745;
+  color: var(--primary);
   font-weight: bold;
   font-size: 18px;
   margin: 0;

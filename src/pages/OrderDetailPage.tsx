@@ -91,7 +91,7 @@ const Wrapper = styled.div`
   height: 100%;
   margin-top: 64px;
   padding: 24px;
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const Title = styled.h2``;
@@ -116,13 +116,13 @@ const CounterSection = styled.section`
   margin-top: 8px;
   font-size: 16px;
   align-items: center;
-  border: 1px solid #1d2745;
+  border: 1px solid var(--primary);
   border-radius: 3px;
   justify-content: space-around;
 `;
 
 const DecrementBtn = styled.button`
-  color: #1d2745;
+  color: var(--primary);
   padding: 0;
   font-size: 24px;
 `;
@@ -132,7 +132,7 @@ const IncrementBtn = styled(DecrementBtn)`
 `;
 
 const ConfirmBtn = styled.button`
-  background-color: #1d2745;
+  background-color: var(--primary);
   border: none;
   outline: none;
 `;

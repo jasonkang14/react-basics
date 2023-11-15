@@ -37,10 +37,10 @@ const OrderTypeBtn = styled.button`
   ${flexRow};
   width: 100%;
   column-gap: 24px;
-  color: #1d2745;
+  color: var(--primary);
   font-weight: bold;
   font-size: 24px;
-  border: 1px solid #1d2745;
+  border: 1px solid var(--primary);
   border-radius: 4px;
   padding: 24px;
 `;

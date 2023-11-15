@@ -35,11 +35,11 @@ const StyledFooter = styled.footer`
   z-index: 5;
   height: 72px;
   box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff;
+  background-color: var(--white);
 `;
 
 const FooterItem = styled.button`
   ${flexColumn};
   align-items: center;
-  color: #1d2745;
+  color: var(--primary);
 `;

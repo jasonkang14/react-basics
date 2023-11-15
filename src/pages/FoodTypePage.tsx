@@ -44,5 +44,5 @@ const FoodType = styled.button`
   align-items: center;
   font-weight: bold;
   row-gap: 8px;
-  color: #1d2745;
+  color: var(--primary);
 `;

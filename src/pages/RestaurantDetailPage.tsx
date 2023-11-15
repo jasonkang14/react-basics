@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 `;
 
 const MenuName = styled.h2`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuDescription = styled.h4`
@@ -69,7 +69,7 @@ const MenuPrice = styled.h5`
 `;
 
 const RestaurantName = styled.h1`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuWrap = styled.div`
