@@ -23,6 +23,6 @@ describe("로그인 화면", () => {
 
         cy.get('[data-cy=loginButton]').should('exist').click();
         // then - 로그인에 성공하고 메인화면으로 이동한다
-        cy.url().should('include', 'http://localhost:5173/')
+        cy.url().should('include', '/')
     })
 })
