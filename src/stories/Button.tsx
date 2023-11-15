@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
+import "../App.css";
 
-import styled from "@emotion/styled";
 interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
@@ -11,7 +11,7 @@ interface ButtonProps {
    * What background color to use
    */
   backgroundColor?: string;
-  /**
+  /**1
    * How large should the button be?
    */
   size?: "small" | "medium" | "large";
@@ -22,9 +22,9 @@ interface ButtonProps {
   /**
    * Optional click handler
    */
-  disabled?: boolean;
-
   onClick?: () => void;
+
+  disabled?: boolean;
 }
 
 /**
@@ -32,9 +32,9 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
+  disabled = false,
   size = "medium",
   backgroundColor,
-  disabled = false,
   label,
   ...props
 }: ButtonProps) => {
@@ -42,26 +42,16 @@ export const Button = ({
     ? "storybook-button--primary"
     : "storybook-button--secondary";
   return (
-    <Test
+    <button
       type="button"
-      disabled={disabled}
-      // className={["storybook-button", `storybook-button--${size}`, mode].join(
-      //   " "
-      // )}
+      className={["storybook-button", `storybook-button--${size}`, mode].join(
+        " "
+      )}
       style={{ backgroundColor }}
+      disabled={disabled}
       {...props}
     >
       {label}
-    </Test>
+    </button>
   );
 };
-
-const Test = styled.button`
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  width: 230px;
-  &:hover {
-    background-color: red;
-  }
-`;

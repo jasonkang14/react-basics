@@ -9,16 +9,16 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: "centered",
-    design: {
-      type: "figma",
-      url: "https://www.figma.com/file/G4KjNpWhzDAGwU6OOX50Hb/Style-Guidelines-(Community)?node-id=25%3A32&mode=dev",
-    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: "color" },
+  },
+  args: {
+    primary: true,
+    disabled: false,
   },
 } satisfies Meta<typeof Button>;
 
@@ -30,7 +30,6 @@ export const Primary: Story = {
   args: {
     primary: true,
     label: "Button",
-    disabled: true,
   },
 };
 

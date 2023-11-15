@@ -127,8 +127,8 @@ const Input = styled.input`
   margin-bottom: 24px;
 
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--mono3);
-  color: var(--mono3);
+  border-bottom: 1px solid var(--mono-300);
+  color: var(--mono-300);
 
   &:focus {
     color: var(--secondary);
@@ -141,8 +141,8 @@ const SignupButton = styled.button`
   padding: 16px;
   border-radius: 4px;
   background-color: ${(props) =>
-    props.disabled ? "var(--mono1)" : "var(--primary)"};
-  color: ${(props) => (props.disabled ? "var(--mono2)" : "var(--white)")};
+    props.disabled ? "var(--mono-100)" : "var(--primary)"};
+  color: ${(props) => (props.disabled ? "var(--mono-200)" : "var(--white)")};
   margin-bottom: 24px;
 `;
 
