@@ -11,10 +11,7 @@
     "preview": "vite preview",
     "unit-test": "jest --watchAll",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "start-server": "npm start",
-    "test": "cypress run",
-    "ci": "start-server-and-test start-server http://localhost:5173 test"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.6",
