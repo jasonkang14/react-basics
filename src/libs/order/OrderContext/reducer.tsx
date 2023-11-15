@@ -1,4 +1,4 @@
-import { castDraft, produce } from "immer";
+import { produce } from "immer";
 
 import { initialState, type State } from "./state";
 import type { INewOrder, IRestaurant, ITargetRestaurant } from "./types";
