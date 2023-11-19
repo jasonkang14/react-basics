@@ -76,6 +76,7 @@ export default function SignupPage() {
       </div>
 
       <SignupButton
+        data-cy="signupButton"
         disabled={!email || !password || password != confirmPassword}
         onClick={() => handleSignup({ username: email, password })}
       >
