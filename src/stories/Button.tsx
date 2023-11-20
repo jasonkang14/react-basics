@@ -1,3 +1,4 @@
+import React from "react";
 import "./button.css";
 import "../App.css";
 
@@ -10,7 +11,7 @@ interface ButtonProps {
    * What background color to use
    */
   backgroundColor?: string;
-  /**1
+  /**
    * How large should the button be?
    */
   size?: "small" | "medium" | "large";
@@ -22,7 +23,9 @@ interface ButtonProps {
    * Optional click handler
    */
   onClick?: () => void;
-
+  /**
+   * Optional disabled
+   */
   disabled?: boolean;
 }
 
@@ -31,7 +34,7 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
-  disabled = false,
+  disabled = true,
   size = "medium",
   backgroundColor,
   label,
