@@ -19,7 +19,6 @@ export default function OrderTypePage() {
         icon="ic-delivery.png"
         orderType="delivery"
         testId="deliveryBtn"
-        data-cy="deliveryBtn"
       />
       <OrderType
         handleOrderTypeClick={handlePickupBtnClick}
