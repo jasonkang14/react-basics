@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://inflearn.byeongjinkang.com",
+  baseURL: "https://server.byeongjinkang.com",
   timeout: 8000,
 });
 

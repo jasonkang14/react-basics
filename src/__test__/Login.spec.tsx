@@ -51,7 +51,7 @@ describe("로그인 테스트", () => {
     );
 
     // when - 사용자가 로그인에 실패한다
-    nock("https://inflearn.byeongjinkang.com")
+    nock("https://server.byeongjinkang.com")
       .post("/user/login/", {
         username: "wrong@email.com",
         password: "wrongPassword",
