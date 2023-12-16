@@ -10,11 +10,8 @@ import FoodTypePage from "./FoodTypePage";
 import RestaurantListPage from "./RestaurantListPage";
 import RestaurantDetailPage from "./RestaurantDetailPage";
 import OrderDetailPage from "./OrderDetailPage";
-<<<<<<< HEAD
 import SignupPage from "./SignupPage";
 import OrderTypePage from "./OrderTypePage";
-=======
->>>>>>> origin/feature/recoil
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
