@@ -5,10 +5,9 @@ export type { ContextType } from "./context";
 export { default as OrderContext } from "./context";
 
 export type {
-  AudioInputDeviceInfo,
-  AudioOutputDeviceInfo,
-  VideoInputDeviceInfo,
   INewOrder,
   IRestaurant,
   ITargetRestaurant,
+  IFoodType,
+  IRestaurantDetail,
 } from "./types";

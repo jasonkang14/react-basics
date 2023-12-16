@@ -1,7 +1,13 @@
 import { produce } from "immer";
 
 import { initialState, type State } from "./state";
-import type { INewOrder, IRestaurant, ITargetRestaurant } from "./types";
+import type {
+  IFoodType,
+  INewOrder,
+  IRestaurant,
+  IRestaurantDetail,
+  ITargetRestaurant,
+} from "./types";
 
 /** Actions */
 export type Action =
@@ -11,8 +17,9 @@ export type Action =
   | { type: "DECREASE_ITEM_COUNT"; payload: number }
   | { type: "SET_TOTAL_PRICE"; payload: number }
   | { type: "SET_TARGET_RESTAURANT"; payload: ITargetRestaurant }
-  | { type: "SET_RESTAURANT_LIST"; payload: IRestaurant[] };
-
+  | { type: "SET_RESTAURANT_LIST"; payload: IRestaurant[] }
+  | { type: "SET_FOODTYPE_LIST"; payload: IFoodType[] }
+  | { type: "SET_RESTAURANT_DETAIL"; payload: IRestaurantDetail };
 /** Reducer */
 export const reducer = (prevState: State, action: Action): State => {
   switch (action.type) {
@@ -57,6 +64,16 @@ export const reducer = (prevState: State, action: Action): State => {
     case "SET_RESTAURANT_LIST":
       return produce(prevState, (draft) => {
         draft.restaurantList = action.payload;
+      });
+
+    case "SET_FOODTYPE_LIST":
+      return produce(prevState, (draft) => {
+        draft.foodTypeList = action.payload;
+      });
+
+    case "SET_RESTAURANT_DETAIL":
+      return produce(prevState, (draft) => {
+        draft.restaurantDetail = action.payload;
       });
 
     default:

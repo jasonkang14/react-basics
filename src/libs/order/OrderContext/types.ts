@@ -1,26 +1,3 @@
-// TODO: 'idle' state
-export type CallState =
-  | "dialing"
-  | "ringing"
-  | "established"
-  | "connected"
-  | "reconnecting"
-  | "reconnected"
-  | "ended";
-
-export type AudioInputDeviceInfo = {
-  current?: InputDeviceInfo;
-  available: InputDeviceInfo[];
-};
-export type AudioOutputDeviceInfo = {
-  current?: MediaDeviceInfo;
-  available: MediaDeviceInfo[];
-};
-export type VideoInputDeviceInfo = {
-  current?: InputDeviceInfo;
-  available: InputDeviceInfo[];
-};
-
 export interface INewOrder {
   id: number;
   name: string;
@@ -40,4 +17,27 @@ export interface IRestaurant {
   ratings: number;
   minPrice: number;
   icon: string;
+}
+
+export interface IFoodType {
+  id: number;
+  name: string;
+  icon: string;
+}
+
+export interface IRestaurantDetail {
+  id: number;
+  name: string;
+  minPrice: number;
+  menu_set: IMenu[];
+}
+
+export type OrderCategory = "delivery" | "pickup";
+
+export interface IMenu {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  picture: string;
 }

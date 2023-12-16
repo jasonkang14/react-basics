@@ -1,15 +1,22 @@
 import styled from "@emotion/styled";
-import useFoodTypeList from "hooks/useFoodTypeList";
+
+import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function FoodTypePage() {
   const navigate = useNavigate();
-  const { data: foodTypeList } = useFoodTypeList();
 
-  const handleFoodTypeClick = (foodTypeId: number) => {
+  const { foodTypeList, getFoodtypeList } = useOrder();
+
+  const handleFoodTypeClick = async (foodTypeId: number) => {
     navigate(`/food-type/${foodTypeId}`);
   };
+
+  useEffect(() => {
+    getFoodtypeList();
+  }, []);
 
   return (
     <Wrapper>

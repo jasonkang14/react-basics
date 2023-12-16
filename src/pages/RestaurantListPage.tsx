@@ -1,18 +1,19 @@
 import styled from "@emotion/styled";
-import { targetRestaurantState } from "atoms/order";
-import useRestaurantList from "hooks/useRestaurantList";
+
+import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
 
 export default function RestaurantListPage() {
   const navigate = useNavigate();
 
-  const setRestaurant = useSetRecoilState(targetRestaurantState);
+  const { restaurantList, getRestaurantList, setRestaurant } = useOrder();
   const { id: foodTypeId } = useParams();
-  const { data: restaurantList } = useRestaurantList(
-    foodTypeId ? parseInt(foodTypeId) : 0
-  );
+
+  useEffect(() => {
+    getRestaurantList(parseInt(foodTypeId ?? "0"));
+  }, []);
 
   const handleRestauratClick = (
     restaurantId: number,

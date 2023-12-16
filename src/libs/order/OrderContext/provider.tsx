@@ -4,8 +4,9 @@ import OrderContext, { initialContext } from "./context";
 import type { ContextType } from "./context";
 import { reducer } from "./reducer";
 import { initialState } from "./state";
-import { INewOrder, IRestaurant, ITargetRestaurant } from ".";
+import { INewOrder, IRestaurant, ITargetRestaurant, IFoodType } from ".";
 import axiosClient from "libs/axios";
+import { IRestaurantDetail } from "./types";
 
 const OrderProvider = ({
   children,
@@ -51,6 +52,21 @@ const OrderProvider = ({
     dispatch({ type: "SET_RESTAURANT_LIST", payload: data });
   };
 
+  const getFoodtypeList = async () => {
+    const { data } = await axiosClient.get<IFoodType[]>(
+      "/restaurant/food-type"
+    );
+
+    dispatch({ type: "SET_FOODTYPE_LIST", payload: data });
+  };
+
+  const getRestaurantDetail = async (restaurantId: number) => {
+    const { data } = await axiosClient.get<IRestaurantDetail>(
+      `/restaurant/${restaurantId}`
+    );
+    dispatch({ type: "SET_RESTAURANT_DETAIL", payload: data });
+  };
+
   const orderContext: ContextType = {
     ...initialContext,
     ...state,
@@ -60,6 +76,8 @@ const OrderProvider = ({
     decreaseItemCount,
     setRestaurant,
     getRestaurantList,
+    getFoodtypeList,
+    getRestaurantDetail,
   };
 
   return (

@@ -1,20 +1,10 @@
-import useLogin from "../hooks/useLogin";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { mutate: handleLogin, isError, isSuccess } = useLogin();
-
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/");
-    }
-  }, [isSuccess]);
 
   return (
     <Wrapper>
@@ -40,7 +30,7 @@ export default function LoginPage() {
                 setEmail(e.target.value)
               }
             />
-            {isError && <ErrorMessage>로그인 정보를 확인해주세요</ErrorMessage>}
+            {/* {isError && <ErrorMessage>로그인 정보를 확인해주세요</ErrorMessage>} */}
           </InputWrapper>
           <InputWrapper>
             <Label htmlFor="passwordInput">비밀번호</Label>
@@ -54,18 +44,14 @@ export default function LoginPage() {
               }
             />
           </InputWrapper>
-          {isError && (
+          {/* {isError && (
             <ErrorMessage data-testid="error-message">
               로그인 정보를 확인해주세요
             </ErrorMessage>
-          )}
+          )} */}
         </InputSection>
       </div>
-      <LoginButton
-        data-cy="loginButton"
-        disabled={!email || !password}
-        onClick={() => handleLogin({ username: email, password })}
-      >
+      <LoginButton data-cy="loginButton" disabled={!email || !password}>
         로그인
       </LoginButton>
     </Wrapper>
@@ -138,13 +124,13 @@ const LoginButton = styled.button`
   margin-bottom: 24px;
 `;
 
-const ErrorMessage = styled.h6`
-  font-size: 12px;
-  line-height: 18px;
-  color: var(--error);
-  position: absolute;
-  bottom: 0;
-`;
+// const ErrorMessage = styled.h6`
+//   font-size: 12px;
+//   line-height: 18px;
+//   color: var(--error);
+//   position: absolute;
+//   bottom: 0;
+// `;
 
 const InputWrapper = styled.div`
   ${ColumnSpaceBetween}

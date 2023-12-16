@@ -1,39 +1,35 @@
 import styled from "@emotion/styled";
-import { newOrderState } from "atoms/order";
-import useRestaurantDetail from "hooks/useRestaurantDetail";
+import { useOrder } from "libs/order";
 
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
-  const [order, addItemToOrder] = useRecoilState(newOrderState);
-  // const { addItemToOrder } = useOrder();
   const { id: restaurantId } = useParams();
-  const { data: restaurant } = useRestaurantDetail(
-    restaurantId ? parseInt(restaurantId) : 0
-  );
+  const { addItemToOrder, getRestaurantDetail, restaurantDetail } = useOrder();
+
+  useEffect(() => {
+    getRestaurantDetail(parseInt(restaurantId ?? "0"));
+  }, []);
 
   const handleMenuClick = (menu: IMenu) => {
-    addItemToOrder([
-      ...order,
-      {
-        name: menu.name,
-        id: menu.id,
-        price: menu.price,
-        count: 1,
-        picture: menu.picture,
-      },
-    ]);
+    addItemToOrder({
+      name: menu.name,
+      id: menu.id,
+      price: menu.price,
+      count: 1,
+      picture: menu.picture,
+    });
     navigate("/order");
   };
 
   return (
     <Wrapper>
-      <RestaurantName>{restaurant?.name}</RestaurantName>
-      {restaurant?.menu_set.map((menu) => (
+      <RestaurantName>{restaurantDetail?.name}</RestaurantName>
+      {restaurantDetail?.menu_set.map((menu) => (
         <MenuWrap data-cy={menu.id} onClick={() => handleMenuClick(menu)}>
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
