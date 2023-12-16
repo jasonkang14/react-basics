@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import { targetRestaurantState } from "atoms/order";
 import useRestaurantList from "hooks/useRestaurantList";
+
 import { flexColumn, flexRow } from "mixins/styles";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 
 export default function RestaurantListPage() {
   const navigate = useNavigate();
-
   const setRestaurant = useSetRecoilState(targetRestaurantState);
   const { id: foodTypeId } = useParams();
   const { data: restaurantList } = useRestaurantList(

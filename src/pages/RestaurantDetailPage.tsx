@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { newOrderState } from "atoms/order";
 import useRestaurantDetail from "hooks/useRestaurantDetail";
-
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,7 +9,7 @@ import { useRecoilState } from "recoil";
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
   const [order, addItemToOrder] = useRecoilState(newOrderState);
-  // const { addItemToOrder } = useOrder();
+
   const { id: restaurantId } = useParams();
   const { data: restaurant } = useRestaurantDetail(
     restaurantId ? parseInt(restaurantId) : 0
