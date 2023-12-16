@@ -1,83 +1,78 @@
 import styled from "@emotion/styled";
-import { newOrderState } from "atoms/order";
-import { useOrder } from "libs/order";
+
 import { flexColumn, flexRow } from "mixins/styles";
-import { Profiler, useEffect } from "react";
+import { IMenu } from "mixins/types";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  // const newOrder = useRecoilValue(newOrderState);
-  const {
-    newOrder,
-    increaseItemCount,
-    decreaseItemCount,
-    resetOrder,
-    totalPrice,
-    restaurant,
-  } = useOrder();
 
-  useEffect(() => {
-    if (!newOrder.length) {
-      navigate(`/restaurant/${restaurant.id}`);
-    }
-  }, [newOrder]);
+  useEffect(
+    () => {
+      // if (!newOrder.length) {
+      // navigate(`/restaurant/${restaurant.id}`);
+      // }
+    },
+    [
+      // newOrder
+    ]
+  );
 
   const handleMoreBtnClick = () => {
-    navigate(`/restaurant/${restaurant.id}`);
+    // navigate(`/restaurant/${restaurant.id}`);
   };
 
   const handleConfirmBtnClick = () => {
-    resetOrder();
+    // resetOrder();
     navigate("/");
   };
-
-  function onRender(
-    id: any,
-    phase: any,
-    actualDuration: any,
-    baseDuration: any,
-    startTime: any,
-    commitTime: any
-  ) {
-    // Aggregate or log render timings...
-  }
+  const newOrder: IMenu[] = [];
 
   return (
-    <Profiler id="orderDetail" onRender={onRender}>
-      <Wrapper>
-        <Title>{restaurant.name}</Title>
-        {newOrder.map((menu) => (
-          <MenuWrap>
-            <img alt={menu.name} src={menu.picture} width={100} height={100} />
-            <MenuInfo>
-              <MenuName>{menu.name}</MenuName>
-              <MenuPrice>{`${menu.price.toString().slice(0, 2)},${menu.price
-                .toString()
-                .slice(2)}원`}</MenuPrice>
+    <Wrapper>
+      <Title>
+        {
+          // restaurant.name
+        }
+      </Title>
+      {newOrder.map((menu) => (
+        <MenuWrap>
+          <img alt={menu.name} src={menu.picture} width={100} height={100} />
+          <MenuInfo>
+            <MenuName>{menu.name}</MenuName>
+            <MenuPrice>{`${menu.price.toString().slice(0, 2)},${menu.price
+              .toString()
+              .slice(2)}원`}</MenuPrice>
 
-              <Counter>
-                <DecrementBtn onClick={() => decreaseItemCount(menu.id)}>
-                  -
-                </DecrementBtn>
-                {menu.count}
-                <IncrementBtn onClick={() => increaseItemCount(menu.id)}>
-                  +
-                </IncrementBtn>
-              </Counter>
-            </MenuInfo>
-          </MenuWrap>
-        ))}
-        <TotalPrice>{`주문금액: ${totalPrice
-          .toString()
-          .slice(0, 2)},${totalPrice.toString().slice(2)}원`}</TotalPrice>
-        <ButtonWrap>
-          <MoreBtn onClick={handleMoreBtnClick}>더담기</MoreBtn>
-          <ConfirmBtn onClick={handleConfirmBtnClick}>주문완료</ConfirmBtn>
-        </ButtonWrap>
-      </Wrapper>
-    </Profiler>
+            <Counter>
+              <DecrementBtn
+              // onClick={() => decreaseItemCount(menu.id)}
+              >
+                -
+              </DecrementBtn>
+              {/* {menu.count} */}
+              <IncrementBtn
+              // onClick={() => increaseItemCount(menu.id)}
+              >
+                +
+              </IncrementBtn>
+            </Counter>
+          </MenuInfo>
+        </MenuWrap>
+      ))}
+      <TotalPrice>
+        {
+          //   `주문금액: ${totalPrice
+          // .toString()
+          //     .slice(0, 2)},${totalPrice.toString().slice(2)}원`
+        }
+      </TotalPrice>
+      <ButtonWrap>
+        <MoreBtn onClick={handleMoreBtnClick}>더담기</MoreBtn>
+        <ConfirmBtn onClick={handleConfirmBtnClick}>주문완료</ConfirmBtn>
+      </ButtonWrap>
+    </Wrapper>
   );
 }
 

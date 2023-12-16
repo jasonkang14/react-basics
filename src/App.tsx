@@ -1,8 +1,10 @@
 import normalize from "emotion-normalize";
+import "./App.css";
 import { css, Global } from "@emotion/react";
 import { PageLayout } from "pages/PageLayout";
 import { router } from "pages/Routes";
 import { RouterProvider } from "react-router-dom";
+
 
 import { Provider } from "react-redux";
 import { store } from "store";

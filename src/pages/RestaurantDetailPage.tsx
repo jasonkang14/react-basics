@@ -1,34 +1,31 @@
 import styled from "@emotion/styled";
-import { newOrderState } from "atoms/order";
 import useRestaurantDetail from "hooks/useRestaurantDetail";
-import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
 
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
   // const [order, addItemToOrder] = useRecoilState(newOrderState);
-  const { addItemToOrder } = useOrder();
+
   const { id: restaurantId } = useParams();
   const { data: restaurant } = useRestaurantDetail(
     restaurantId ? parseInt(restaurantId) : 0
   );
 
   const handleMenuClick = (menu: IMenu) => {
-    addItemToOrder(
-      // [
-      // ...order,
-      {
-        name: menu.name,
-        id: menu.id,
-        price: menu.price,
-        count: 1,
-        picture: menu.picture,
-      }
-      // ]
-    );
+    // addItemToOrder(
+    //   // [
+    //   // ...order,
+    //   {
+    //     name: menu.name,
+    //     id: menu.id,
+    //     price: menu.price,
+    //     count: 1,
+    //     picture: menu.picture,
+    //   }
+    //   // ]
+    // );
     navigate("/order");
   };
 
@@ -59,7 +56,7 @@ const Wrapper = styled.div`
 `;
 
 const MenuName = styled.h2`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuDescription = styled.h4`
@@ -71,7 +68,7 @@ const MenuPrice = styled.h5`
 `;
 
 const RestaurantName = styled.h1`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuWrap = styled.div`
