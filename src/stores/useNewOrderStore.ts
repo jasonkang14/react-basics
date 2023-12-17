@@ -1,5 +1,11 @@
 import { create } from "zustand";
 
+export interface ITargetRestaurant {
+  id: number;
+  name: string;
+  minPrice: number;
+}
+
 export interface INewOrder {
   id: number;
   name: string;
@@ -10,14 +16,17 @@ export interface INewOrder {
 
 interface INewOrderState {
   orders: INewOrder[];
+  restaurant: ITargetRestaurant | null;
   addItemToOrder: (order: INewOrder) => void;
   increaseItemCount: (menuId: number) => void;
   decreaseItemCount: (menuId: number) => void;
   resetOrder: () => void;
+  setRestaurant: (restaurant: ITargetRestaurant) => void;
 }
 
 const useNewOrderStore = create<INewOrderState>()((set) => ({
   orders: [],
+  restaurant: null,
 
   addItemToOrder: (newItem: INewOrder) =>
     set((state) => ({ orders: [...state.orders, newItem] })),
@@ -39,6 +48,7 @@ const useNewOrderStore = create<INewOrderState>()((set) => ({
       ),
     })),
   resetOrder: () => set(() => ({ orders: [] })),
+  setRestaurant: (restaurant: ITargetRestaurant) => set(() => ({ restaurant })),
 }));
 
 export default useNewOrderStore;

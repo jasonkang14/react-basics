@@ -1,25 +1,20 @@
 import styled from "@emotion/styled";
-import {
-  newOrderState,
-  targetRestaurantState,
-  totalPriceState,
-} from "atoms/order";
 
 import { flexColumn, flexRow } from "mixins/styles";
-import { Profiler, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+
 import useNewOrderStore from "stores/useNewOrderStore";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-  // const totalPrice = useRecoilValue(totalPriceState);
-  const restaurant = useRecoilValue(targetRestaurantState);
 
   const {
     orders: newOrder,
+    restaurant,
     increaseItemCount,
     decreaseItemCount,
+    resetOrder,
   } = useNewOrderStore((state) => state);
   const totalPrice = newOrder.reduce(
     (total, item) => total + item.price * item.count,
@@ -28,79 +23,55 @@ export default function OrderDetailPage() {
 
   useEffect(() => {
     if (!newOrder.length) {
-      navigate(`/restaurant/${restaurant.id}`);
+      navigate(`/restaurant/${restaurant?.id}`);
     }
   }, [newOrder]);
 
   const handleMoreBtnClick = () => {
-    navigate(`/restaurant/${restaurant.id}`);
+    navigate(`/restaurant/${restaurant?.id}`);
   };
 
   const handleConfirmBtnClick = () => {
-    // resetOrder();
+    resetOrder();
     navigate("/");
   };
 
-  function onRender(
-    id: any,
-    phase: any,
-    actualDuration: any,
-    baseDuration: any,
-    startTime: any,
-    commitTime: any
-  ) {
-    // Aggregate or log render timings...
-  }
-
   const handleIncrementBtnClick = (menuId: number) => {
-    console.log("menuId: ", menuId);
     increaseItemCount(menuId);
-    // changeCount((oldArray) =>
-    //   oldArray.map((item) =>
-    //     item.id === menuId ? { ...item, count: item.count + 1 } : item
-    //   )
-    // );
   };
 
   const handleDecrementBtnClick = (menuId: number) => {
     decreaseItemCount(menuId);
-    // changeCount((oldArray) =>
-    //   oldArray.map((item) =>
-    //     item.id === menuId ? { ...item, count: item.count - 1 } : item
-    //   )
-    // );
   };
 
   return (
-    <Profiler id="orderDetail" onRender={onRender}>
-      <Wrapper>
-        <Title>{restaurant.name}</Title>
-        {newOrder.map((menu) => (
-          <MenuWrap>
-            <img alt={menu.name} src={menu.picture} width={100} height={100} />
-            <MenuInfo>
-              <MenuName>{menu.name}</MenuName>
-              <MenuPrice>{`${menu.price.toLocaleString()}원`}</MenuPrice>
+    <Wrapper>
+      <Title>{restaurant?.name}</Title>
+      {newOrder.map((menu) => (
+        <MenuWrap key={menu.id}>
+          <img alt={menu.name} src={menu.picture} width={100} height={100} />
+          <MenuInfo>
+            <MenuName>{menu.name}</MenuName>
+            <MenuPrice>{`${menu.price.toLocaleString()}원`}</MenuPrice>
 
-              <Counter>
-                <DecrementBtn onClick={() => handleDecrementBtnClick(menu.id)}>
-                  -
-                </DecrementBtn>
-                {menu.count}
-                <IncrementBtn onClick={() => handleIncrementBtnClick(menu.id)}>
-                  +
-                </IncrementBtn>
-              </Counter>
-            </MenuInfo>
-          </MenuWrap>
-        ))}
-        <TotalPrice>{`주문금액: ${totalPrice.toLocaleString()}원`}</TotalPrice>
-        <ButtonWrap>
-          <MoreBtn onClick={handleMoreBtnClick}>더담기</MoreBtn>
-          <ConfirmBtn onClick={handleConfirmBtnClick}>주문완료</ConfirmBtn>
-        </ButtonWrap>
-      </Wrapper>
-    </Profiler>
+            <Counter>
+              <DecrementBtn onClick={() => handleDecrementBtnClick(menu.id)}>
+                -
+              </DecrementBtn>
+              {menu.count}
+              <IncrementBtn onClick={() => handleIncrementBtnClick(menu.id)}>
+                +
+              </IncrementBtn>
+            </Counter>
+          </MenuInfo>
+        </MenuWrap>
+      ))}
+      <TotalPrice>{`주문금액: ${totalPrice.toLocaleString()}원`}</TotalPrice>
+      <ButtonWrap>
+        <MoreBtn onClick={handleMoreBtnClick}>더담기</MoreBtn>
+        <ConfirmBtn onClick={handleConfirmBtnClick}>주문완료</ConfirmBtn>
+      </ButtonWrap>
+    </Wrapper>
   );
 }
 

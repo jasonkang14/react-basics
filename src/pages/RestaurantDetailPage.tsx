@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { newOrderState } from "atoms/order";
+
 import useRestaurantDetail from "hooks/useRestaurantDetail";
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
+
 import useNewOrderStore from "stores/useNewOrderStore";
 
 export default function RestaurantDetailPage() {
@@ -15,7 +15,7 @@ export default function RestaurantDetailPage() {
   const { data: restaurant } = useRestaurantDetail(
     restaurantId ? parseInt(restaurantId) : 0
   );
-  const { addItemToOrder } = useNewOrderStore((state) => state);
+  const { addItemToOrder, setRestaurant } = useNewOrderStore((state) => state);
 
   const handleMenuClick = (menu: IMenu) => {
     addItemToOrder({
@@ -25,6 +25,11 @@ export default function RestaurantDetailPage() {
       count: 1,
       picture: menu.picture,
     });
+    setRestaurant({
+      name: restaurant?.name ?? "",
+      id: restaurant?.id ?? 0,
+      minPrice: restaurant?.minPrice ?? 0,
+    });
     navigate("/order");
   };
 
@@ -32,7 +37,11 @@ export default function RestaurantDetailPage() {
     <Wrapper>
       <RestaurantName>{restaurant?.name}</RestaurantName>
       {restaurant?.menu_set.map((menu) => (
-        <MenuWrap data-cy={menu.id} onClick={() => handleMenuClick(menu)}>
+        <MenuWrap
+          key={menu.id}
+          data-cy={menu.id}
+          onClick={() => handleMenuClick(menu)}
+        >
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
             <MenuDescription>{menu.description}</MenuDescription>
