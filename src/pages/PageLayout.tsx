@@ -1,17 +1,9 @@
 import styled from "@emotion/styled";
-import Footer from "components/Footer";
-import Header from "components/Header";
 
 import { ReactNode } from "react";
 
 export function PageLayout({ children }: { children: ReactNode }) {
-  return (
-    <Wrapper>
-      <Header />
-      {children}
-      <Footer />
-    </Wrapper>
-  );
+  return <Wrapper>{children}</Wrapper>;
 }
 
 const Wrapper = styled.div`
@@ -20,5 +12,5 @@ const Wrapper = styled.div`
   height: 100vh;
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
+  background-color: var(--white);
 `;

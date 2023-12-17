@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Quae.피자",
+        "ratings": 4.75,
+        "minPrice": 21000,
+        "icon": "https://kr.object.ncloudstorage.com/icons/ic-pizza.png"
+    },
+    {
+        "id": 2,
+        "name": "Nam.피자",
+        "ratings": 3.96,
+        "minPrice": 34000,
+        "icon": "https://kr.object.ncloudstorage.com/icons/ic-pizza.png"
+    },
+    {
+        "id": 3,
+        "name": "Quia.피자",
+        "ratings": 3.3,
+        "minPrice": 30000,
+        "icon": "https://kr.object.ncloudstorage.com/icons/ic-pizza.png"
+    },
+    {
+        "id": 4,
+        "name": "Quae.피자",
+        "ratings": 1.2,
+        "minPrice": 30000,
+        "icon": "https://kr.object.ncloudstorage.com/icons/ic-pizza.png"
+    },
+    {
+        "id": 5,
+        "name": "Ea.피자",
+        "ratings": 1.83,
+        "minPrice": 12000,
+        "icon": "https://kr.object.ncloudstorage.com/icons/ic-pizza.png"
+    }
+]

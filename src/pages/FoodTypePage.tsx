@@ -14,7 +14,7 @@ export default function FoodTypePage() {
   return (
     <Wrapper>
       {foodTypeList?.map((foodType) => (
-        <FoodType key={foodType.id}>
+        <FoodType key={foodType.id} data-cy={foodType.id}>
           <img
             alt={foodType.name}
             width={56}
@@ -44,5 +44,5 @@ const FoodType = styled.button`
   align-items: center;
   font-weight: bold;
   row-gap: 8px;
-  color: #1d2745;
+  color: var(--primary);
 `;

@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
   position: fixed;
   width: 100vw;
   top: 0;
-  background-color: #1d2745;
+  background-color: var(--primary);
   height: 64px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;

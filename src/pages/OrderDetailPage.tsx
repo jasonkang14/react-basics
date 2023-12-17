@@ -4,7 +4,7 @@ import {
   targetRestaurantState,
   totalPriceState,
 } from "atoms/order";
-import { useOrder } from "libs/order";
+
 import { flexColumn, flexRow } from "mixins/styles";
 import { Profiler, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,14 +25,6 @@ export default function OrderDetailPage() {
     (total, item) => total + item.price * item.count,
     0
   );
-  const {
-    // newOrder,
-    // increaseItemCount,
-    // decreaseItemCount,
-    resetOrder,
-    // totalPrice,
-    // restaurant,
-  } = useOrder();
 
   useEffect(() => {
     if (!newOrder.length) {
@@ -45,7 +37,7 @@ export default function OrderDetailPage() {
   };
 
   const handleConfirmBtnClick = () => {
-    resetOrder();
+    // resetOrder();
     navigate("/");
   };
 
@@ -118,7 +110,7 @@ const Wrapper = styled.div`
   height: 100%;
   margin-top: 64px;
   padding: 24px;
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const Title = styled.h2``;
@@ -137,7 +129,7 @@ const MenuName = styled.h3``;
 
 const MenuPrice = styled.h4``;
 
-const Counter = styled.div`
+const Counter = styled.section`
   ${flexRow}
   width: 120px;
   margin-top: 8px;
@@ -149,7 +141,7 @@ const Counter = styled.div`
 `;
 
 const DecrementBtn = styled.button`
-  color: #1d2745;
+  color: var(--primary);
   padding: 0;
   font-size: 24px;
 `;
@@ -159,7 +151,7 @@ const IncrementBtn = styled(DecrementBtn)`
 `;
 
 const ConfirmBtn = styled.button`
-  background-color: #1d2745;
+  background-color: var(--primary);
   border: none;
   outline: none;
 `;

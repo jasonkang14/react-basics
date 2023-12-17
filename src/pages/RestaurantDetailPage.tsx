@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { newOrderState } from "atoms/order";
 import useRestaurantDetail from "hooks/useRestaurantDetail";
-import { useOrder } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,15 +18,13 @@ export default function RestaurantDetailPage() {
   const { addItemToOrder } = useNewOrderStore((state) => state);
 
   const handleMenuClick = (menu: IMenu) => {
-    addItemToOrder(
-      {
-        name: menu.name,
-        id: menu.id,
-        price: menu.price,
-        count: 1,
-        picture: menu.picture,
-      },
-    );
+    addItemToOrder({
+      name: menu.name,
+      id: menu.id,
+      price: menu.price,
+      count: 1,
+      picture: menu.picture,
+    });
     navigate("/order");
   };
 
@@ -35,7 +32,7 @@ export default function RestaurantDetailPage() {
     <Wrapper>
       <RestaurantName>{restaurant?.name}</RestaurantName>
       {restaurant?.menu_set.map((menu) => (
-        <MenuWrap onClick={() => handleMenuClick(menu)}>
+        <MenuWrap data-cy={menu.id} onClick={() => handleMenuClick(menu)}>
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
             <MenuDescription>{menu.description}</MenuDescription>
@@ -58,7 +55,7 @@ const Wrapper = styled.div`
 `;
 
 const MenuName = styled.h2`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuDescription = styled.h4`
@@ -70,7 +67,7 @@ const MenuPrice = styled.h5`
 `;
 
 const RestaurantName = styled.h1`
-  color: #1d2745;
+  color: var(--primary);
 `;
 
 const MenuWrap = styled.div`

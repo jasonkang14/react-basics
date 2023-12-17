@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import OrderType from "components/OrderType";
-import { flexColumn } from "mixins/styles";
+import OrderType from "../components/OrderType";
+import { flexColumn } from "../mixins/styles";
 import { useNavigate } from "react-router-dom";
 
 export default function OrderTypePage() {
@@ -13,16 +13,18 @@ export default function OrderTypePage() {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-cy="wrapper">
       <OrderType
         handleOrderTypeClick={handleDeliveryBtnClick}
         icon="ic-delivery.png"
         orderType="delivery"
+        testId="deliveryBtn"
       />
       <OrderType
         handleOrderTypeClick={handlePickupBtnClick}
         icon="ic-pickup.png"
         orderType="pickup"
+        testId="pickupBtn"
       />
     </Wrapper>
   );
