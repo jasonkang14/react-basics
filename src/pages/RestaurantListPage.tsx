@@ -13,11 +13,7 @@ export default function RestaurantListPage() {
     foodTypeId ? parseInt(foodTypeId) : 0
   );
 
-  const handleRestauratClick = (
-    restaurantId: number,
-    restaurantName: string
-  ) => {
-    // setRestaurant({ id: restaurantId, name: restaurantName });
+  const handleRestauratClick = (restaurantId: number) => {
     navigate(`/restaurant/${restaurantId}`, { replace: true });
   };
 
@@ -27,7 +23,7 @@ export default function RestaurantListPage() {
         <RestaurantBtn
           data-cy={restaurant.id}
           key={restaurant.id}
-          onClick={() => handleRestauratClick(restaurant.id, restaurant.name)}
+          onClick={() => handleRestauratClick(restaurant.id)}
         >
           <img alt="food-type" src={restaurant.icon} width={36} height={36} />
           <RestaurantInfo>

@@ -1,39 +1,48 @@
 import styled from "@emotion/styled";
-import useRestaurantDetail from "hooks/useRestaurantDetail";
+
 import { flexColumn, flexRow } from "mixins/styles";
 import { IMenu } from "mixins/types";
+
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetRestaurantDetailQuery } from "store/queries/restaurantDetail";
+import { addOrder, setRestaurant } from "store/reducers/order";
 
 export default function RestaurantDetailPage() {
   const navigate = useNavigate();
-  // const [order, addItemToOrder] = useRecoilState(newOrderState);
-
+  const dispatch = useDispatch();
   const { id: restaurantId } = useParams();
-  const { data: restaurant } = useRestaurantDetail(
-    restaurantId ? parseInt(restaurantId) : 0
-  );
+  const targetRestaurantId = restaurantId ? parseInt(restaurantId) : 0;
+
+  const { data: restaurantDetail } =
+    useGetRestaurantDetailQuery(targetRestaurantId);
 
   const handleMenuClick = (menu: IMenu) => {
-    // addItemToOrder(
-    //   // [
-    //   // ...order,
-    //   {
-    //     name: menu.name,
-    //     id: menu.id,
-    //     price: menu.price,
-    //     count: 1,
-    //     picture: menu.picture,
-    //   }
-    //   // ]
-    // );
+    dispatch(
+      addOrder({
+        name: menu.name,
+        id: menu.id,
+        price: menu.price,
+        count: 1,
+        picture: menu.picture,
+      })
+    );
+    dispatch(
+      setRestaurant({
+        id: targetRestaurantId,
+        name: restaurantDetail?.name || "",
+        minPrice: restaurantDetail?.minPrice || 0,
+      })
+    );
+
     navigate("/order");
   };
 
   return (
     <Wrapper>
-      <RestaurantName>{restaurant?.name}</RestaurantName>
-      {restaurant?.menu_set.map((menu) => (
-        <MenuWrap onClick={() => handleMenuClick(menu)}>
+      <RestaurantName>{restaurantDetail?.name}</RestaurantName>
+      {restaurantDetail?.menu_set.map((menu) => (
+        <MenuWrap key={menu.id} onClick={() => handleMenuClick(menu)}>
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
             <MenuDescription>{menu.description}</MenuDescription>

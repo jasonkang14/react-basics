@@ -1,43 +1,44 @@
 import styled from "@emotion/styled";
 
 import { flexColumn, flexRow } from "mixins/styles";
-import { IMenu } from "mixins/types";
 import { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "store";
+import {
+  decreaseOrderCount,
+  increaseOrderCount,
+  resetOrder,
+} from "store/reducers/order";
 
 export default function OrderDetailPage() {
   const navigate = useNavigate();
-
-  useEffect(
-    () => {
-      // if (!newOrder.length) {
-      // navigate(`/restaurant/${restaurant.id}`);
-      // }
-    },
-    [
-      // newOrder
-    ]
+  const dispatch = useDispatch();
+  const { orderList, restaurant } = useSelector(
+    (state: RootState) => state.orderReducer
   );
 
   const handleMoreBtnClick = () => {
-    // navigate(`/restaurant/${restaurant.id}`);
+    navigate(`/restaurant/${restaurant.id}`);
   };
 
   const handleConfirmBtnClick = () => {
-    // resetOrder();
+    dispatch(resetOrder());
     navigate("/");
   };
-  const newOrder: IMenu[] = [];
+
+  useEffect(() => {
+    if (orderList.length === 0) {
+      navigate(`/restaurant/${restaurant.id}`);
+    }
+  }, [orderList]);
 
   return (
     <Wrapper>
-      <Title>
-        {
-          // restaurant.name
-        }
-      </Title>
-      {newOrder.map((menu) => (
-        <MenuWrap>
+      <Title>{restaurant.name}</Title>
+      {orderList.map((menu, index) => (
+        <MenuWrap key={menu.id}>
           <img alt={menu.name} src={menu.picture} width={100} height={100} />
           <MenuInfo>
             <MenuName>{menu.name}</MenuName>
@@ -46,15 +47,11 @@ export default function OrderDetailPage() {
               .slice(2)}원`}</MenuPrice>
 
             <Counter>
-              <DecrementBtn
-              // onClick={() => decreaseItemCount(menu.id)}
-              >
+              <DecrementBtn onClick={() => dispatch(decreaseOrderCount(index))}>
                 -
               </DecrementBtn>
-              {/* {menu.count} */}
-              <IncrementBtn
-              // onClick={() => increaseItemCount(menu.id)}
-              >
+              {menu.count}
+              <IncrementBtn onClick={() => dispatch(increaseOrderCount(index))}>
                 +
               </IncrementBtn>
             </Counter>

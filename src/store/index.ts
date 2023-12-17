@@ -3,16 +3,21 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { foodTypeListApi } from "./queries/foodTypeList";
 import { restaurantListApi } from "./queries/restaurantList";
+import { restaurantDetailApi } from "./queries/restaurantDetail";
+import orderDetailReducer from "./reducers/order";
 
 export const store = configureStore({
   reducer: {
+    orderReducer: orderDetailReducer,
     [foodTypeListApi.reducerPath]: foodTypeListApi.reducer,
     [restaurantListApi.reducerPath]: restaurantListApi.reducer,
+    [restaurantDetailApi.reducerPath]: restaurantDetailApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(
       foodTypeListApi.middleware,
-      restaurantListApi.middleware
+      restaurantListApi.middleware,
+      restaurantDetailApi.middleware
     );
   },
 });

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import useFoodTypeList from "hooks/useFoodTypeList";
+
 import { flexColumn, flexRow } from "mixins/styles";
 import { useNavigate } from "react-router-dom";
 import { useGetFoodTypeListQuery } from "store/queries/foodTypeList";
