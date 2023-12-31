@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to our react-basics! This repository is a comprehensive collection of various React.js functionalities and state management solutions. It's designed to demonstrate the use of Redux, Context API, Zustand, Recoil, along with various testing methods and optimization techniques in a React.js environment. Check out each feature branch based on your need if you would like to see detailed implementation of each functionality 
+Welcome to react-basics! This repository is a comprehensive collection of various React.js functionalities and state management solutions. It's designed to demonstrate the use of Redux, Context API, Zustand, Recoil, along with various testing methods and optimization techniques in a React.js environment. Check out each feature branch based on your need if you would like to see detailed implementation of each functionality 
 
 ## Features
 
