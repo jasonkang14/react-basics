@@ -7,9 +7,7 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
-    "types": ["cypress"],
     "allowImportingTsExtensions": true,
-
 
     /* Bundler mode */
     "moduleResolution": "node",
@@ -23,8 +21,8 @@
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "cypress/e2e/3-order/order-cy.ts", "**/*.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
