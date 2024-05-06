@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
 import { targetRestaurantState } from "atoms/order";
-import useIntersection from "hooks/useIntersection";
+// import useIntersection from "hooks/useIntersection";
 
 import { IRestaurant } from "libs/order";
 import { flexColumn, flexRow } from "mixins/styles";
-import { useRef } from "react";
+// import { useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
