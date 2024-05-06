@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 
 import useRestaurantList from "hooks/useRestaurantList";
-import { Profiler, useRef } from "react";
+import { Profiler } from "react";
 import { useParams } from "react-router-dom";
 
 import RestaurantCard from "./RestaurantCard";
-import useIntersection from "hooks/useIntersection";
+// import useIntersection from "hooks/useIntersection";
 
 export default function RestaurantListPage() {
   const { id: foodTypeId } = useParams();
-  const targetRef = useRef(null);
-  const isIntersecting = useIntersection(targetRef, {
-    threshold: 0.5, // 예시: 50% 이상이 화면에 보일 때 감지
-  });
+  // const targetRef = useRef(null);
+  // const isIntersecting = useIntersection(targetRef, {
+  //   threshold: 0.5, // 예시: 50% 이상이 화면에 보일 때 감지
+  // });
 
   const { data: restaurantList } = useRestaurantList(
     foodTypeId ? parseInt(foodTypeId) : 0
@@ -48,6 +48,6 @@ const Wrapper = styled.div`
   margin-top: 64px;
 `;
 
-const EmptyDiv = styled.div`
-  height: 24px;
-`;
+// const EmptyDiv = styled.div`
+//   height: 24px;
+// `;
